@@ -1,5 +1,3 @@
-          {% load static %}
-          <script src="{% static 'alphabox/assets/js/howler/incription_connection.js' %}"></script>
           <ul class="px-3 d-flex text-white justify-content-between align-items-center m-0">
             {% if "login" in request.COOKIES %}
             <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Bon retour</a>
@@ -26,4 +24,3 @@
              {% include 'alphabox/includes/inscriptionModal.html' %}
              {% include 'alphabox/includes/connexionModal.html' %}
              
-

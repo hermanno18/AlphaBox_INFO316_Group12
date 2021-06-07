@@ -1,27 +1,345 @@
 {% extends '../base.html' %}
           {% block gameUtils %}
             
-          {% endblock gameUtils %}
+          {% endblock gameUtils %}30000
 
           {% block gameCanvas %}
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" name="" id="entryInput" onkeydown="if (event.keyCode == 13) {maFonction();}" autocomplete="address-level3" autofocus>
+                <div class="row d-flex justify-content-center p-4 m-0">
+                    <div class="col-xl-5 col-md-10 col-sm-12 d-flex justify-content-between">
+                      <div class="col-11">
+                        <input type="text" class="form-control" name="" id="entryInput" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) {maFonction();}" autocomplete="address-level3" autofocus>
+                      </div>
+                      <div class="col-1 d-flex  justify-content-center p-2 text-light" id="">
+                        <i id="timerDisplay" class="title">00</i> s
+                      </div>
                     </div>
-                    <div class="col-md-9 overflow-auto" style="height: 200px;">
-                        <p id="liste">
-
-                        </p>
+                </div>
+                <div class=" row justify-content-center p-3 m-0">
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>Vous :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto p-0 m-0" >
+                                <ul class="list-group text-white table-hover " id="liste">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>Amadou :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm " style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto p-0 m-0" id="liste">
+                                <ul class="list-group text-white table-hover ">
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-1x fa-check"></i> Hermanno 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-2x fa-user-circle mx-1"></i> Dilane 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-2x fa-user-circle mx-1"></i>Pamela 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-2x fa-user-circle mx-1"></i> Bleriot 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-2x fa-user-circle mx-1"></i> Hermanno 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                    <li class=" list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-2x fa-user-circle mx-1"></i> Hermanno 
+                                      </div>
+                                      <div class="bg-dark p-2 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white">14584</span> <span class="text-warning"> points </span> |
+                                        <span class="badge badge-success badge-pill">14</span> <span class="text-success"> badges </span>
+                                      </div>
+                                    </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>Vous :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm p-1" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto " id="liste">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>MGamer :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm p-1" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto " id="liste">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>Joueur123456 :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto m-0 p-0" id="liste">
+                                <ul class="list-group text-white table-hover ">
+                                    <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <i class="fas fa-1x fa-check-circle mr-1"></i> Bonjour 
+                                      </div>
+                                      <div class="bg-dark p-1 rounded-sm  " >
+                                        <span class="badge badge-warning badge-pill text-white animation fadeIn infinite">1</span> <span class="text-warning"> points </span> |
+                                      </div>
+                                    </li>
+                                    <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-danger b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-times-circle mr-1"></i> Bon-d 
+                                        </div>
+                                      </li>
+                                      <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-danger b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-check-circle mr-1"></i> Bon@ne 
+                                        </div>
+                                      </li>
+                                      <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-check-circle mr-1"></i> Bien 
+                                        </div>
+                                        <div class="bg-dark p-1 rounded-sm  " >
+                                          <span class="badge badge-warning badge-pill text-white">1</span> <span class="text-warning"> points </span> |
+                                        </div>
+                                      </li>
+                                      <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-check-circle mr-1"></i> Hermanno 
+                                        </div>
+                                        <div class="bg-dark p-1 rounded-sm  " >
+                                          <span class="badge badge-warning badge-pill text-white">1</span> <span class="text-warning"> points </span> |
+                                        </div>
+                                      </li>
+                                      <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-check-circle mr-1"></i> Hermanno 
+                                        </div>
+                                        <div class="bg-dark p-1 rounded-sm  " >
+                                          <span class="badge badge-warning badge-pill text-white">1</span> <span class="text-warning"> points </span> |
+                                        </div>
+                                      </li>
+                                      <li class=" m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <i class="fas fa-1x fa-check-circle mr-1"></i> Hermanno 
+                                        </div>
+                                        <div class="bg-dark p-1 rounded-sm  " >
+                                          <span class="badge badge-warning badge-pill text-white">1</span> <span class="text-warning"> points </span> |
+                                        </div>
+                                      </li>
+                                  </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>joueursDif :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm p-1" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto " id="liste">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>jodfsd :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm p-1" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto " id="liste">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>jouer2 :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                              </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm p-1" style="max-height: 200px; min-height: 80px;">
+                            <div class="card-body overflow-auto " id="liste">
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
           {% endblock gameCanvas %}
           {% block script %}
           {{block.super}}
           <script lang="Javascript">
             function maFonction(){
-             document.getElementById('liste').innerHTML = document.getElementById('liste').innerHTML+ " <br> " + document.getElementById('entryInput').value
-             document.getElementById('entryInput').value=""
-     
+                    word =document.getElementById('entryInput').value
+                    word = word.toLowerCase()
+                    position = word.indexOf(GAME_SETTING.letter)
+                    if(position == 0){ // si le mot qu'il a entré commence par la lettre sélectionée, on par chercher dans le dictionnaire
+                      $.ajax({
+                        data: {"word" : word} , // on défini les données à envoyer
+                        type: 'GET', // on précise la methode
+                        url: "{% url 'alphabox:game_guessWords_findWords' %}", //l'url vers laquelle AJAX doit diriger la requette
+                        // on success 
+                        success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
+                          // alors on fait des choeses ici
+                            displayTheAnswer(response.found)
+                            console.log("my object: %o", response) // ca c'est la commande pour dumper un objet en console
+                        },
+                        // on error
+                        error: function(response) { //sinon
+                          //on réagi ici
+                          console.log("the error returned: %o", response)
+                        }
+                      });
+  
+                    }else{ //sinon, on marque ce mot comme incorrect
+                      displayTheAnswer(false)
+                    }
+
+                    function displayTheAnswer(word_is_correct){
+                      if(!word_is_correct){
+                        test = 'danger';
+                        icon = "times"
+                        $('#ndErrors').html(parseInt($('#ndErrors').html()) + 1)
+                      }else{
+                        test = 'success';
+                        icon = 'check'
+                        $('#nbCorrect').html(parseInt($('#nbCorrect').html()) + 1)
+                      }
+                      list_item = "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-"+test+" b d-flex justify-content-between align-items-center'>"
+                      list_item+= "<div class='d-flex justify-content-between align-items-center'>"
+                      list_item+= "<i class='fas fa-1x fa-"+icon+"-circle mr-1'></i>" +  word + "</div>"
+                      if(test=='success'){
+                          list_item+="<div class='bg-dark p-1 rounded-sm  ' >"
+                          list_item+="<span class='badge badge-warning badge-pill text-white animation fadeIn infinite'>1</span> <span class='text-warning'> points </span> </div>"            
+                      }
+                      list_item+="</li>"
+                      document.getElementById('liste').innerHTML = list_item +document.getElementById('liste').innerHTML
+                      document.getElementById('entryInput').value=""
+                    }
+             
+             function motCorrect(text){
+                //on décide  au hasard si le mot est correct ou pas
+                return Math.round(Math.random());
+             }
+            } 
+             function game(){
+                 document.getElementById('entryInput').focus()
+                var countDownDate = new Date().getTime()+GAME_SETTING.timer*1000;
+                var x = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = countDownDate - now;
+                    var seconds = Math.floor(distance / 1000);
+                    displayTimer = seconds;
+                    if(seconds < 2*GAME_SETTING.timer/3){
+                      displayTimer = '<span class="text-warning"> '+seconds+' </span>'
+                    }
+                    if(seconds < GAME_SETTING.timer/3){
+                      displayTimer = '<span class="text-danger"> '+seconds+' </span>'
+                    }
+                    $('#timerDisplay').html(displayTimer)
+
+                    if (distance < 1) {
+                      // une requette AJAX ici pour savegarder l'etat des donnes en BD
+                        clearInterval(x);
+                        output = '<h1> Ton temps est écoulé !! </h2>'
+                        output += "<h4> pour t'encourager, voici 5 mots que tu n'as pas écris; clique dessis pour avoir leur définition! </h4>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += "<h5> Votre temps est écoulé !! </h5>"
+                        output += ""
+                        output += ""
+                        $('#countdownValue').html(output)
+                        $('#countdownModal').modal('toggle');
+                        document.getElementById('entryInput').disabled = true
+                        document.getElementById('entryInput').style.display = "none"
+                    }
+                }, 1000);
              }
          </script> 
           {% endblock script %}

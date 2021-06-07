@@ -5,6 +5,9 @@ urlpatterns = [
     # Url for the website home
     path("", views.index , name="home"),
 
+    # Urls for testings sommes functions before adding it in the main program
+    path("test", views.test , name="test_route"),
+
     # Urls for the dashboard
     path("dashboard/evolution", views.dashboard_evolution , name="dashboard_evolution"),
     path("dashboard/profile", views.dashboard_profile , name="dashboard_profile"),
@@ -15,7 +18,9 @@ urlpatterns = [
     # Urls for the games
     # - Urls for the first game : "guess Words"
     path("game/guessWords", views.guess_words , name="game_guessWords_home"),
-    path("game/guessWords/settings", views.dashboard_others , name="game_guessWords_settings"),
+    path("game/guessWords/settings", views.guess_words_settings , name="game_guessWords_settings"),
+    path("game/guessWords/find/", views.guess_words_findwords , name="game_guessWords_findWords"),
+
     # Urls for the inscription
     path("compte/inscription",views.inscription,name="inscription"),
     path("compte/connexion",views.connexion,name="connexion"),

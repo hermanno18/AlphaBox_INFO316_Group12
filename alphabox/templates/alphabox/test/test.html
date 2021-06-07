@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+{% load static %}
+            {% block content %}
+            <button >Get JSON data</button>
+
+            <div></div>
+            
+{% endblock content %}
+
+{% block script %}
+{{block.super}}
+<script>
+  $(document).ready(function(){
+    $("button").click(function(){
+
+      $.getJSON("{% static 'alphabox/assets/json/test.json' %}", function(result){
+        $.each(result, function(i, field){
+          $("div").append(field + " ");
+        });
+      });
+    });
+  });
+  </script>
+
+{% endblock script %}
+
+

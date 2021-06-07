@@ -38,7 +38,7 @@ body {
 }
 .background {
   background-color: transparent;
-  position: relative;
+  position: boslo;
   min-height: 100vh;
   width: 100%;
   overflow: hidden;
