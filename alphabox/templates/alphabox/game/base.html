@@ -175,6 +175,7 @@
             enableCollapsibleOptGroups: true,
             buttonWidth: '150px',
             dropRight: true
+
         });
     </script>
 
@@ -211,6 +212,8 @@
 //          b - on charge l'animation pour sélectionner une lettre
           $('#countdownModal').modal('show');
           $('#countdownValue').html($('#virtualKeyBoard').html());
+          document.getElementById('entryInput').disabled = false
+
           }
 
 
@@ -255,7 +258,7 @@
 
 //          puis je démarre le compte à rebour 
             // Set the date we're counting down to
-            var countDownDate = new Date().getTime()+8000;
+            var countDownDate = new Date().getTime()+6000;
             // Update the count down every 1 second
             var x = setInterval(function() {
 
@@ -266,15 +269,11 @@
               var distance = countDownDate - now;
 
               // Time calculations for days, hours, minutes and seconds
-              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
               var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
               // Display the result in the element with id="demo"
               
-              HTML = days + "d " + hours + "h "
-              + minutes + "m " + seconds + "s ";
+              HTML =  seconds + "s ";
               $('#countdownValue').html(HTML)
               // If the count down is finished, write some text
               if (distance < 1) {

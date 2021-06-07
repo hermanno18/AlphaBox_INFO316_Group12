@@ -323,21 +323,25 @@
                     if (distance < 1) {
                       // une requette AJAX ici pour savegarder l'etat des donnes en BD
                         clearInterval(x);
-                        output = '<h1> Ton temps est écoulé !! </h2>'
-                        output += "<h4> pour t'encourager, voici 5 mots que tu n'as pas écris; clique dessis pour avoir leur définition! </h4>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += "<h5> Votre temps est écoulé !! </h5>"
-                        output += ""
-                        output += ""
+                        output = '<center> <h1>Temps écoulé !! </h2></center> '
+                        output += "<p> Voici 5 mots que tu aurais pu entrer : </>"
+                        output += "<ul class='list-group text-white table-hover' >"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>"
+                        output += "</ul>"
+
+                        output += "<p> Vous pouvez consulter  <a href='#'>les mots que vous avez entré</a> </>"
+                        output += "<div class='btn-group btn-lg d-flex '>"
+                        output += "<button onclick='setGameParameters()' class='btn btn-success' class='close' data-dismiss='modal' aria-label='Close'> <i class='fas fa-check-circle'></i> Continuer</button>"
+                        output += "<a href='{% url 'alphabox:home' %}' class='btn btn-danger'> <i class='fas fa-times-circle'></i> Annuler</a>"
+                        output += "</div>"
                         $('#countdownValue').html(output)
                         $('#countdownModal').modal('toggle');
                         document.getElementById('entryInput').disabled = true
-                        document.getElementById('entryInput').style.display = "none"
                     }
                 }, 1000);
              }

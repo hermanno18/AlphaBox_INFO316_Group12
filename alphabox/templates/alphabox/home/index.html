@@ -7,7 +7,7 @@
 {% endblock stylesheet %}
 
 {% block content %}
-  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="main">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column overflow-auto" id="main">
     <header class="masthead">
       <div class="inner">
         <h2 class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3"><i class="fas fa-2x fa-gamepad animated headShake slow infinite"></i> <span>AlphaBox</span></h2>
@@ -17,8 +17,8 @@
       </div>
     </header>
     <main role="main" class="inner cover">
-      <h2 class="cover-heading mb-4">Démarrez une partie en juste quelques clics !</h2>
-      <div class="row p-0 m-0">
+      <h2 class="cover-heading mb-4">Démarrez une partie en cliquant sur l'image !</h2>
+      <div class="row p-0 m-0 mb-5">
 
         <div class="col-md-4 animated fadeInRight mainModule  "  id="mainModule1">
           <div class="card mb-4 shadow-sm">
@@ -164,6 +164,45 @@
                   </div>
                 </div>
               </div>
+      </div>
+      <h2 class="cover-heading mb-4 d-flex justify-content-center " style="margin-top: 20px">Encore plus de jeux !</h2>
+      <div class="row p-0 m-0 d-flex justify-content-center">
+        <div class="col-md-2 animated bounceIn mainModule mx-4  "  id="subModule1">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body ">
+              <div class="d-flex justify-content-center align-items-center" style="min-height: 100px" >
+                <span class="title text-warning">Puzzles</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 animated bounceIn delay-1s mainModule mx-4" id="subModule2">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
+                <span class=" title text-success ">Recherche de mots</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 animated bounceIn delay-2s mainModule mx-4" id="subModule3">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
+                <span class=" title text-primary"> Mots croisés</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 animated bounceIn delay-3s mainModule mx-4" id="subModule4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
+                <span class=" title text-primary"> Anagrammes</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   {% include "alphabox/includes/footerNav.html" %}
