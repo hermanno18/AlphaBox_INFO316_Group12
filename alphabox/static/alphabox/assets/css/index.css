@@ -1,0 +1,100 @@
+/*
+ * Globals
+ */
+ @font-face {
+  font-family: fantasyFont;
+  src: url(../fonts/fanta___.ttf);
+}
+ html,
+ body {
+ }
+ 
+ body {
+   color: #fff;
+ }
+ 
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/*
+ * Base structure
+ */
+
+
+.cover-container {
+  /* max-width: 72em; */ 
+}
+
+
+/*
+ * Header
+ */
+.masthead {
+  margin-bottom: 5rem;
+}
+
+.masthead-brand {
+  margin-bottom: 0;
+}
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: #fff;
+  background-color: transparent;
+  border-top: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-top-color: #fff;
+
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+.mainModule span.title{
+  font-family: fantasyFont;
+  font-size: 25px;
+}
+
+/*
+ * Footer
+ */
+.mastfoot {
+  color: rgba(255, 255, 255, .5);
+}
+
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  box-sizing: border-box;
+}
+.container-fluid{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #FFF;
+}
+/* ============= Animation background ========= */

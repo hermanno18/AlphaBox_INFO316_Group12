@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+          {% block gameUtils %}
+            
+          {% endblock gameUtils %}
+
+          {% block gameCanvas %}
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="" id="entryInput" onkeydown="if (event.keyCode == 13) {maFonction();}" autocomplete="address-level3" autofocus>
+                    </div>
+                    <div class="col-md-9 overflow-auto" style="height: 200px;">
+                        <p id="liste">
+
+                        </p>
+                    </div>
+                </div>
+          {% endblock gameCanvas %}
+          {% block script %}
+          {{block.super}}
+          <script lang="Javascript">
+            function maFonction(){
+             document.getElementById('liste').innerHTML = document.getElementById('liste').innerHTML+ " <br> " + document.getElementById('entryInput').value
+             document.getElementById('entryInput').value=""
+     
+             }
+         </script> 
+          {% endblock script %}

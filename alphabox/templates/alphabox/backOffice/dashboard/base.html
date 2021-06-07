@@ -1,0 +1,43 @@
+{% extends 'alphabox/backOffice/base.html' %}
+{% block title %} Dashboard - {{block.super}} {% endblock title %}  
+{% block stickySideBar %}
+                    <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link courant" href="Evolution.html">
+                      Mon Evolution 
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="profil.html">
+                      Mon Profil
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="programme_Etude.html">
+                      Programmes déttude
+                    </a>
+                  </li>
+                </ul>
+        
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                  <span>Autres </span>
+                  <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                    <span data-feather="plus-circle"></span>
+                  </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                  <li class="nav-item">
+                    <a class="nav-link" href="camarade_jeux.html">
+                      <span data-feather="file-text"></span>
+                      Camarades de Jeu 
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <span data-feather="file-text"></span>
+                      Autres...
+                    </a>
+                  </li>
+                </ul>
+{% endblock stickySideBar %}
+

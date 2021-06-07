@@ -1,0 +1,73 @@
+           {% load static %}
+            <!-- menu latérale droit -->
+          <div id="mySidenav" class="sidenav">
+            <div class="sideNavHeader w-100 d-flex text-white justify-content-between align-items-center">
+              <span>MENU</span>
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" >&times;</a>
+            </div>
+            <div class="body mt-2 ">
+              <a href="{% url 'alphabox:home' %}" class="btn btn-link text-left p-3 w-100 card-header" ><i class="fas fa-home "></i> Accueil</a>
+              <div class="accordion bg-transparent" id="menuAccordion">
+                <div class="card bg-transparent">
+                  <div class="card-header p-0 bg-transparent" id="headingOne">
+                    <h2 class="mb-0 p-0">
+                      <a class="btn btn-link text-left p-3 w-100" href="#" data-toggle="collapse" style="text-decoration: none;" data-target="#collapseDashbord" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-table"></i> Tableau de Bord
+                      </a>
+                    </h2>
+                  </div>
+                  <div id="collapseDashbord" class="collapse show bg-transparent" aria-labelledby="headingOne" data-parent="#menuAccordion">
+                    <div class="card-body bg-dark py-1 px-2 pl-4">
+                    <ul class="nav flex-column ">
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_evolution' %}">Evolution</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_profile' %}">Profil</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_program' %}">Programmes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_friends' %}">Camarade de Jeu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_others' %}">Autres...</a>
+                      </li>
+                    </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card bg-transparent">
+                  <div class="card-header p-0" id="headingTwo">
+                    <h2 class="mb-0">
+                      <a class="btn btn-link text-left p-3 w-100 collapsed" href="#" style="text-decoration: none;" data-toggle="collapse" data-target="#collapseSeting" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-cog fa-spin"></i> Reglages
+                      </a>
+                    </h2>
+                  </div>
+                  <div id="collapseSeting" class="collapse" aria-labelledby="headingTwo" data-parent="#menuAccordion">
+                    <div class="card-body bg-dark py-1 px-2 pl-4">
+                      <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Active</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Link</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="btn btn-link text-left p-3 w-100 card-header text-center" onclick="toggle_sound()"><i class="fas fa-headphones"></i>  Son</a>
+            </div>
+             <div class="">
+              <span style="position: absolute; bottom:0" class="w-100">
+                <a href="{% url 'alphabox:deconnection' %}" class="btn btn-link btn-danger text-center p-3 w-100 card-header" style="text-decoration: none;" ><i class="fas fa-power-off " ></i> Déconnection</a>
+              </span>
+            </div>
+          </div>

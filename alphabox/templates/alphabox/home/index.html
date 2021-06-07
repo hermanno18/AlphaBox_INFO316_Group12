@@ -1,0 +1,204 @@
+{% extends 'alphabox/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+{{block.super}}
+    <link href="{% static 'alphabox/assets/css/index.css' %}" rel="stylesheet">
+{% endblock stylesheet %}
+
+{% block content %}
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="main">
+    <header class="masthead">
+      <div class="inner">
+        <h2 class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3"><i class="fas fa-2x fa-gamepad animated headShake slow infinite"></i> <span>AlphaBox</span></h2>
+        <nav class="nav nav-masthead justify-content-center m-0 p-0" >
+            {% include 'alphabox/includes/mainNav.html' %}
+        </nav>
+      </div>
+    </header>
+    <main role="main" class="inner cover">
+      <h2 class="cover-heading mb-4">Démarrez une partie en juste quelques clics !</h2>
+      <div class="row p-0 m-0">
+
+        <div class="col-md-4 animated fadeInRight mainModule  "  id="mainModule1">
+          <div class="card mb-4 shadow-sm">
+            <a href="{% url 'alphabox:game_guessWords_home' %}">
+              <img src="{% static 'alphabox/assets/img/image4.jpeg' %}" class="bd-placeholder-img card-img-top" width="100%" height="225"  alt="">
+            </a>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="title text-warning">Devinez les mots</span>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#descriptionBloc1">Description</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <!-- Modal pour la description du bloc 1 -->
+              <div class="modal fade text-dark "   id="descriptionBloc1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="descriptionBloc1Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-md-4">
+                            <img src="{% static 'alphabox/assets/img/image4.jpeg' %}" class="bd-placeholder-img card-img-top" width="100%" height="155"  alt="">
+                            <h3><span class="title text-warning">Devinez les mots</span></h3>
+                            <p>
+                              quelques dtatils drfgdfv dkfv dfij vdkfvdfvdfv dfv dfvdfv 
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                          <h2 class="text-info">Regles du jeu</h2>
+                          <hr>
+                          <p style="text-align:justify ;">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          lor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          </p>
+                          <div style="text-align:right">
+                            <button type="button" class="left btn btn-lg btn-primary"  data-dismiss="modal" aria-label="Close">
+                              J'ai comptris
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <div class="col-md-4 animated fadeIn delay-2s mainModule" id="mainModule2">
+          <div class="card mb-4 shadow-sm">
+            <a href="{% url 'alphabox:game_guessWords_home' %}">
+              <img src="{% static 'alphabox/assets/img/image2.png' %}" class="bd-placeholder-img card-img-top" width="100%" height="225"  alt="">
+            </a>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class=" title text-success">Learning Words</span>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#descriptionBloc2">Description</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <!-- Modal pour la description du bloc 1 -->
+              <div class="modal fade text-dark "   id="descriptionBloc2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="descriptionBloc1Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-md-4">
+                            <img src="{% static 'alphabox/assets/img/image2.png' %}" class="bd-placeholder-img card-img-top" width="100%" height="155"  alt="">
+                            <h3><span class="title text-warning">Learning Words</span></h3>
+                            <p>
+                              quelques dtatils drfgdfv dkfv dfij vdkfvdfvdfv dfv dfvdfv 
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                          <h2 class="text-info">Regles du jeu</h2>
+                          <hr>
+                          <p style="text-align:justify ;">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          lor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          </p>
+                          <div style="text-align:right">
+                            <button type="button" class="left btn btn-lg btn-primary"  data-dismiss="modal" aria-label="Close">
+                              J'ai comptris
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <div class="col-md-4 animated fadeInLeft delay-1s mainModule" id="mainModule3">
+          <div class="card mb-4 shadow-sm">
+            <a href="" class="">
+              <img src="{% static 'alphabox/assets/img/image3.jpeg' %}" class="bd-placeholder-img card-img-top " width="100%" height="225"  alt="">
+            </a>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class=" title text-primary"> Jouez avec les mots</span>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#descriptionBloc3">Description</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <!-- Modal pour la description du bloc 1 -->
+              <div class="modal fade text-dark "   id="descriptionBloc3" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="descriptionBloc1Label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="col-md-4">
+                            <img src="{% static 'alphabox/assets/img/image3.jpeg' %}" class="bd-placeholder-img card-img-top" width="100%" height="155"  alt="">
+                            <h3><span class="title text-warning">Devinez les mots</span></h3>
+                            <p>
+                              quelques dtatils drfgdfv dkfv dfij vdkfvdfvdfv dfv dfvdfv 
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                          <h2 class="text-info">Jouer avec les mots</h2>
+                          <hr>
+                          <p style="text-align:justify ;">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          lor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                          </p>
+                          <div style="text-align:right">
+                            <button type="button" class="left btn btn-lg btn-primary"  data-dismiss="modal" aria-label="Close">
+                              J'ai comptris
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+    </main>
+  {% include "alphabox/includes/footerNav.html" %}
+  </div>
+{% endblock content %}
+
+{% block script %}
+    {{block.super}}
+    <script type="text/javascript"> 
+      setTimeout(function(){
+        AddAndCallRemove("#mainModule1", "pulse ", 4000)
+        $("#mainModule1").removeClass("fadeInRight" )
+        $("#mainModule1").removeClass("fadeInRight" )
+
+        AddAndCallRemove("#mainModule2", "pulse", 4000)
+        $("#mainModule2").removeClass("fadeIn" )
+        $("#mainModule2").removeClass("delay-2s" )        
+        $("#mainModule2").addClass("delay-1s")
+
+        AddAndCallRemove("#mainModule3", "pulse", 4000)
+        $("#mainModule3").removeClass("fadeInLeft" )
+        $("#mainModule3").removeClass("delay-1s" )
+        $("#mainModule3").addClass("delay-2s")
+      }, 4000)
+
+      function removeAndCallAdd(cible, class_, delay){
+        $(cible).removeClass(class_ )
+        setTimeout(function(){ AddAndCallRemove(cible, class_, delay) },delay)
+      }
+      function AddAndCallRemove(cible, class_, delay){
+        $(cible).addClass(class_)
+        setTimeout(function(){ removeAndCallAdd(cible, class_, delay) },delay)
+      } 
+
+    </script>
+{% endblock script %}
+
+

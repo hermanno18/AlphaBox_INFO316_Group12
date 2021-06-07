@@ -1,0 +1,51 @@
+{% extends "alphabox/base.html" %}
+{% load static %}
+{% block title %}{% endblock title %}
+
+{% block stylesheet %}
+{{block.super}}
+    <link href="{% static 'alphabox/assets/css/dashboard.css' %}" rel="stylesheet">
+{% endblock stylesheet %}
+
+{% block content %}
+    <div class="h-100">
+        <nav class="navbar sticky-top navbar-dark flex-md-nowrap p-0 shadow " id='NavBar'>
+            <h1 class="navbar-brand col-md-3 col-lg-2  px-3 h1 mb-0 mr-0" href="index.html"> AlphaBox</h1>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form action="truc.html" class="w-100">
+                <input class="form-control form-control-light" type="search" placeholder="Rechercher un Tableau de bord..." aria-label="Search">
+            </form>
+            {% include '../includes/mainNav.html' %}
+        </nav>
+        <div class="container-fluid">
+          <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light">
+              <div class="sidebar-sticky pt-3">
+                {% block stickySideBar %} {% endblock stickySideBar %}
+              </div>
+            </nav>
+        
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-light h-100 overflow-auto" style="min-height: 520px">
+            {% block main_content %}{% endblock main_content %}
+            </main>
+          </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    {{block.super}}
+    <script type="text/javascript">
+    
+    window.onscroll = function() {myFunction()};
+    
+    function myFunction() {
+        if (document.body.scrollTop > 35 || document.documentElement.scrollTop > 35) {
+        document.getElementById("NavBar").style.backgroundColor = "rgba(6, 40, 77, 0.957)";
+        }else{
+        document.getElementById("NavBar").style.backgroundColor = "transparent";
+        }
+    }
+    </script>
+{% endblock script %}

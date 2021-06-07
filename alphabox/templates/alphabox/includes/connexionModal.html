@@ -1,0 +1,45 @@
+    {% load static %}
+    <!-- Modal for la connexion-->
+    <div class="modal fade text-dark"   id="connexionModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="connexionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form-signin" id="connexion_form" method="POST" action="">
+              {% csrf_token %}
+              <div class="text-center mb-4">
+                <img class="mb-4" src="{% static 'alphabox/assets/icons/bootstrapIcons/file-earmark-person-fill.svg' %}" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+              </div>
+              <p id=connexion_erreur style="color:red"></p>
+            
+              <div class="form-label-group">
+                <input type="text" id="inputPseudo" class="form-control" placeholder="Pseudo" required autofocus name="login">
+              </div>
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="loginpassword">
+              </div>
+              <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me" name="remember"> Remember me
+                </label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit" id="connexion_call">Connexion</button>
+            </form>       
+            <small class="mt-4">
+              <p>Vous n'avez pas de compte ? <span class="text-primary" data-toggle="modal" data-target="#registerModal"> cliquez ici pour en creer un rapidement !</span></p>
+            </small>   
+          <script src="{% static 'alphabox/assets/js/jquery-3.5.1.min.js' %}"></script>
+          <script type="text/javascript">var urlajax2="{% url 'alphabox:connexion' %}"</script>
+          <script src="{% static 'alphabox/assets/js/howler/incription_connection.js' %}"></script>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

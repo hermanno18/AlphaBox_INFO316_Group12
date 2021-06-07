@@ -1,0 +1,120 @@
+{% extends './base.html' %}
+{% block title %}
+Profil - {{block.super}}
+{% endblock title %}
+{% block main_content %}
+            <!-- partie pour  l'onglet "mon Profil"
+              
+              NOTE ! - à ne pas afficher si l'utilisateur ne s'est pas deja inscrit
+                    - mettre en lecture seule si l'utilisateurt qui visite cette page n'est pas le propriétaire du tableau de bord qu'il consulte
+            -->
+              <h2 class="text-secondary"> consultez / modifiez vos infomarions personnelles </h2> <br>
+            <!-- partie pour  l'onglet "mon Profil"-->
+        
+              <form action="" method="post">
+                <div class="row">
+                  <div class="col-md-6 b-1">
+                    <h3 class="text-secondary"> Infomations principales</h3>    
+                    <hr>    
+                    <div class="form-label-group">
+                      <input type="text" id="Pseudo" class="form-control" placeholder="Pseudo" required>
+                      <label for="Pseudo">Pseudo </label>
+                    </div>
+        
+                    <div class="form-label-group">
+                      <input type="email" id="Mail" class="form-control" placeholder="E-mail" required>
+                      <label for="Mail">E-mail </label>
+                    </div>
+                    <div class="checkbox mb-3">
+                      <label>
+                        <input type="checkbox" value="accept-GCU" checked="checked"> Cacher mon tableau de bord
+                      </label> <br>
+                      <small> en décohant cette case, votre tableau de bord, et les informations qu'il contient seront visible par le public; en la laissant cochée, elles ne seront visible que par vos compagons de jeux </small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h3 class="text-secondary"> <i class="bi-alarm"></i>Infomations complémentaires</h3> <hr>
+                    <div class="form-label-group">
+                      <input type="text" id="o" name="" class="form-control" placeholder="Biographie" height="500px">
+                      <label for="o">Biographie</label>
+                    </div>
+                    <div class="form-label-group">
+                      <textarea  id="bio" name="UserBio" class="form-control" placeholder="Biographie" maxlength="500" rows="5"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex text-white justify-content-between align-items-center">
+                  <button type="submit" class="btn btn-lg btn-primary"><i class="fas fa-save"></i> Mettre à jour mes informations</button> 
+                  <span data-toggle="modal" data-target="#editPasswordModal" class="btn btn-info"> <i class="fas fa-edit"></i> Modifier mon mot de passe </span>
+                  <span data-toggle="modal" data-target="#confirmDeleteAccountModal" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> Supprimer mon compte</span>
+                </div>
+              </form>
+                  <!-- Modal pour l'edition du mott de passe-->
+                <div class="modal fade text-dark"   id="editPasswordModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="form-signin">
+                          <div class="d-flex text-white justify-content-between align-items-center mb-2 text-dark">
+                            <img class="mb-4" src="assets/icons/bootstrapIcons/key.svg" alt="" width="70" height="70">
+                            <div style="width: 75%;">
+                              <h2 class="h3 mb-1 font-weight-normal text-info">Modifiez votre mot de passe</h2> <hr>
+                            </div>
+                          </div>     
+                          <div class="form-label-group">
+                            <input type="password" id="actualPassword" class="form-control" placeholder="Votre mot depasse actuel" required>
+                            <label for="actualPassword">Votre mot depasse actuel</label>
+                          </div>
+                          <div class="form-label-group">
+                            <input type="password" id="newPassword" class="form-control" placeholder="Nouveau mot de passe" required>
+                            <label for="newPassword">Nouveau mot de passe :</label>
+                          </div>
+                          <div class="form-label-group">
+                            <input type="password" id="newConfirmPassword" class="form-control" placeholder="Confirmer le nouveau mot de passe" required>
+                            <label for="newConfirmPassword">Confirmer le nouveau mot de passe</label>
+                          </div>
+                          <button class="btn btn-lg btn-primary btn-block" type="submit">Mettre à jour</button>
+                        </form>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal pour confirmer la suppression du compte-->
+                <div class="modal fade text-dark"   id="confirmDeleteAccountModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="form-signin">
+                          <div class="d-flex text-white justify-content-between align-items-center mb-2 text-dark">
+                            <img class="mb-4" src="assets/icons/bootstrapIcons/trash.svg" alt="" width="70" height="70" >
+                            <div style="width: 75%;">
+                              <h2 class="h3 mb-1 font-weight-normal text-danger"> Supprimer mon Compte</h2><hr>
+                            </div>
+                          </div>
+                          <p> <b> <span class="text-danger">Important </span> à savoir :</b></p>
+                          <ul>
+                            <li>
+                              En supprimant votre compte, vous perdrez toutes la progression que vous avez accumulé, et toutes les informations sur nos serveurs.
+                            </li>
+                            <li>
+                              cette action est irrévocable.
+                            </li>
+                          </ul>
+                          <p>Êtes-vous sûre de vouloir supprimer votre compte ?</p>     
+                          <button class="btn btn-lg btn-danger btn-block" type="submit">confirmer la suppression</button>
+                        </form>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+{% endblock main_content %}

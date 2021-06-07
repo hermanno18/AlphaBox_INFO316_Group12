@@ -1,0 +1,78 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.80.0">
+        <title>{% block title %}Alphabox{% endblock title %}</title>
+        {% block stylesheet %}
+            {# les feuilles de style communes à toutes les pages du site #}
+            <link href="{% static 'alphabox/assets/css/mdb.min.css' %}" rel="stylesheet">
+            <link href="{% static 'alphabox/assets/css/bootstrap.min.css' %}" rel="stylesheet">
+            <link href="{% static 'alphabox/assets/css/sign-in.css' %}" rel="stylesheet">
+            <link href="{% static 'alphabox/assets/css/sideMenu.css' %}" rel="stylesheet">
+            <link href="{% static 'alphabox/assets/css/main.css' %}" rel="stylesheet">
+            <link href="{% static 'alphabox/assets/icons/fontawesome/css/all.css' %}" rel="stylesheet">
+            <link href="{% static '' %}" rel="stylesheet">
+    
+        {% endblock stylesheet %}
+            <!-- Bootstrap core CSS -->
+    <style>
+        /* petit bouton pour le son */
+            #ManageSong{
+                position: fixed;
+                bottom: 50px;
+                left: 10px;
+                background-color: #097FDA;
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                color: white;
+                padding: 9px;
+                text-align: center;
+            }
+    </style>
+    </head>
+    <body class="" >
+        {% block backgroundAnimations %}
+        <div class="background">
+            <div class="cube"></div>
+        </div>  
+        {% endblock backgroundAnimations %}
+    <div class="absoluteContainer ">
+            {% include "alphabox/includes/sideMenu.html" %}
+            {% block content %}{% endblock content %}
+    </div>
+    <div id="ManageSong" class="" onclick="testson()" >
+        <i class="fas fa-2x fa-music"></i>
+    </div>
+    
+
+    {% block script %}
+    <script src="{% static 'alphabox/assets/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/mdb.min.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/animationSideMenu.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/howler/howler.js' %}"></script>
+    <script type="text/javascript">
+        //variable pour spécifier la source des sons, juste avant de charger le script de gestion de son
+        var SOUNDS_PATH ="{% static 'alphabox/assets/sounds/' %}"
+    </script>
+    <script src="{% static 'alphabox/assets/js/soundsManager.js' %}"></script>
+    <script type="text/javascript">
+        /*pour afficher un Modal au chartgement
+        
+        $(window).on('load', function() {
+            $('#connexionModal').modal('show');
+        });
+        */
+    </script>
+
+    {% endblock script %}
+
+    </body>
+</html>

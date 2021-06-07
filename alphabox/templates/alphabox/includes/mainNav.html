@@ -1,0 +1,29 @@
+          {% load static %}
+          <script src="{% static 'alphabox/assets/js/howler/incription_connection.js' %}"></script>
+          <ul class="px-3 d-flex text-white justify-content-between align-items-center m-0">
+            {% if "login" in request.COOKIES %}
+            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Bon retour</a>
+            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a>
+           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
+            {% endif %}
+            {% if "login" not in request.COOKIES %}
+            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Connexion</a>
+            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement">Enregistrement</a>
+            {% endif %}
+
+            <form action="#" class=" " >
+              <select name="lang" id="siteLangSelect" class="  btn btn-outline-light dropdown-toggle"  style="height: 25px; font-size: 14px; padding:4px">
+                <option value="">Fr </option>
+                <option value="">En </option>
+                <option value="">All </option>
+                <option value="">Esp </option>
+                <option value="">Ch </option>
+              </select>
+            </form>
+            <a href="javascript:void(0)" class="mx-2 btn btn-outline-white p-1" onclick="openNav()"> <i class="fa fa-1x fa-clipboard-list"></i> Menu</a>
+          </ul>
+              <!-- ce bloc est caché -->
+             {% include 'alphabox/includes/inscriptionModal.html' %}
+             {% include 'alphabox/includes/connexionModal.html' %}
+             
+

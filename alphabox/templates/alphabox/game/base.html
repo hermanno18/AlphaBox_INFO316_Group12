@@ -1,0 +1,160 @@
+{% extends "alphabox/base.html" %}
+{% load static %}
+{% block title %}{% endblock title %}
+
+{% block stylesheet %}
+    {{block.super}}
+    <link href="{% static 'alphabox/assets/css/gameMainStyle.css' %}" rel="stylesheet">
+
+{% endblock stylesheet %}
+
+    {% block backgroundAnimations %}
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+    {% endblock backgroundAnimations %}
+
+{% block content %}
+        <div class="">
+          <div class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3">
+            <h2 class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3"><i class="fas fa-2x fa-gamepad animated headShake slow infinite"></i> <span>AlphaBox</span></h2>
+            <div class="inner">
+              <a href="javascript:void(0)" class="mx-2 btn btn-outline-white p-1" onclick="openNav()"> <i class="fa fa-1x fa-clipboard-list"></i> Menu</a>
+            </div>
+          </div>        
+        </div>
+        {% block gameUtils %}
+          
+        {% endblock gameUtils %}
+        <div class="main_content">
+          {% block gameCanvas %}
+            
+          {% endblock gameCanvas %}
+        </div>
+        <!-- Modal pour les réglages du jeu-->
+        <div class="modal fade text-dark"   id="configGameModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-body">
+                <form class="form-signin">
+                  <div class="d-flex text-white justify-content-between align-items-center mb-2 text-dark">
+                      <i class="fas fa-cog fa-spin fa-6x"></i>
+                    <div style="width: 75%;">
+                      <h2 class="h3 mb-1 font-weight-normal text-info">Avant de commencer, faites quelques petites réglages</h2> <hr>
+                    </div>
+                  </div>  
+                  <div class="mb-2">
+                    <small >Utilisez la configuration par défaut en Cliquant sur <span class="badge badge-lg badge-success">commencer</span> sans modifier les champs</small> 
+                  </div>   
+                  <div class="form-label-group">
+                    <input type="text" id="LOTitle" class="form-control" placeholder="Module sur lequel porte l'apprentissage" required>
+                    <label for="LOTitle">Titre de votre objectif</label>
+                  </div>
+                  <div class="row">
+                    <div class="form-label-group col-sm-6">
+                      <select type="number" label="Frequence des rappels" id="LOModule" class="form-control h-100" required>
+                        <optgroup for="LOModule" label="Module à Apprendre">
+                          <option value="">Deniner les mots</option>
+                          <option value=""> Deviner d'autres trucs</option>
+                          <option value=""> Utiliser les mots</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div class="form-label-group col-sm-6">
+                      <input type="number" id="LONbWords" class="form-control" placeholder="Nombre de mots à apprendre" required maxlength="4">
+                      <label for="LONbWords" class="mx-3">Nombre de mots à apprendre</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-label-group col-sm-6">
+                      <input type="date" id="LOStartDate" class="form-control" placeholder="Date de début" required>
+                      <label for="LOStartDate" class="mx-3">Date de début</label>
+                    </div>
+                    <div class="form-label-group col-sm-6">
+                      <input type="date" id="LOEndDate" class="form-control" placeholder="Date de fin" required>
+                      <label for="LOEndDate" class="mx-3">Date de fin</label>
+                    </div>
+                  </div>
+                  <div class="form-label-group">
+                    <select type="number" label="Frequence des rappels" id="LONbReminds" class="form-control h-100" placeholder="Nombre de rappels par jour" required>
+                      <optgroup for="LONbReminds" label="Frequence des rappels">
+                        <option value="">Tous les jours</option>
+                        <option value=""> toutes les semaines</option>
+                        <option value=""> 3 fois par jour</option>
+                        <option value="">Tous les 2 jours</option>
+                        <option value=""> 2 fois par jour</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <button onclick="setGameParameters()" class="btn btn-lg btn-success btn-block" class="close" data-dismiss="modal" aria-label="Close"> <i class="fas fa-check-circle"></i> Commencer</button>
+                </form>          
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal pour le compte à rebour avant le lancement-->
+        <div class="modal fade text-dark"   id="countdownModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered dialog-scrollable ">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <span id='countdownValue' class="">
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}
+{% block script %}
+    {{block.super}}
+    <script type="text/javascript">
+        //pour afficher le modal de réglage au chargement de la page
+        $(window).on('load', function() {
+            $('#configGameModal').modal('show');
+          });
+        
+        // la fonction qui défini les paramettres du jeu
+        function setGameParameters(){
+          alert("coucou je vais envoyer ces données à Ajax pour qu'il les garde en BD \n  mais avant je vais creer des variables en JS pour que tu puisse jouer meme si Ajax est pas dispo; jsuis cool non ;)")
+          setInterval
+          //puis je démarre le compte à rebour 
+          
+            $('#countdownModal').modal('show');
+
+                      // Set the date we're counting down to
+            var countDownDate = new Date().getTime()+8000;
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+              // Display the result in the element with id="demo"
+              
+              HTML = days + "d " + hours + "h "
+              + minutes + "m " + seconds + "s ";
+              $('#countdownValue').html(HTML)
+              // If the count down is finished, write some text
+              if (distance < 1) {
+                clearInterval(x);
+                $('#countdownModal').modal('toggle');
+            }
+            }, 1000);
+          //on appelle le jeu proprement dit                    
+          game()
+          }
+
+
+    </script>
+{% endblock script %}

@@ -1,0 +1,89 @@
+{% extends './base.html' %}
+{% block title %}
+Evolution - {{block.super}}
+{% endblock title %}
+{% block main_content %}
+              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2 text-secondary">Votre évolution :</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Publier mon tabelau de bord</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Réinitialiser</button>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <h3 class="text-secondary">Vos badjes :</h3>   
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap">
+                  <div class="col-sm-2 btn btn-primary"> sddfdfd ddfdf ddfdfddfdf</div>
+                  <div class="col-sm-2 btn btn-danger">sddfdfd</div>
+                  <div class="col-sm-2 btn btn-warning">sddfdf</div>
+                  <div class="col-sm-2 btn btn-info">sddfdffd</div>
+                </div>
+              </div>
+              <br><br>
+              <div class="container-fluid">
+                <h3 class="text-secondary">Vos langues apprises :</h3>   
+                <div class="justify-content-between">
+                  <div class="col-sm-2 btn btn-danger m-2"><i class="fas fa-language"></i> Allemand</div>
+                  <div class="col-sm-2 btn btn-primary m-2" ><i class="fas fa-language"></i> Anglais</div>
+                  <div class="col-sm-2 btn btn-primary m-2"><i class="fas fa-language"></i> Arabe</div>
+                  <div class="col-sm-2 btn btn-danger m-2 "><i class="fas fa-language text-white"></i> Chinois</div>
+                  <div class="col-sm-2 btn btn-danger m-2"><i class="fas fa-language"></i> Espagnol</div>
+                  <div class="col-sm-2 btn btn-success m-2"><i class="fas fa-language"></i> Francais</div>          
+                  <div class="col-sm-2 btn btn-warning m-2" ><i class="fas fa-language"></i> Latin</div>
+                  <div class="col-sm-2 btn btn-secondary m-2"><i class="fas fa-language"></i> Russe</div>
+                </div>
+                <small>
+                  <p> <b>Notes :</b> pour les langues, les couleurs ont les significations suivantes :
+                    <span class="badge badge-success">Excellent</span>
+                    <span class="badge badge-primary">tres bien</span>
+                    <span class="badge badge-warning">Assez-bien</span>
+                    <span class="badge badge-secondary">moyen</span>
+                    <span class="badge badge-danger">mauvais</span>
+                  </p>
+                </small>
+              </div> 
+              <br>
+              <h2 class="text-secondary">autres informations</h2>
+              <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>theme :</th>
+                      <th>valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>nombre de mots maitrisés</td>
+                      <td>12</td>
+                    </tr>
+                    <tr>
+                      <td>1,002</td>
+                      <td>placeholder</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>data</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>information</td>
+                    </tr>
+                    <tr>
+                      <td>1,004</td>
+                      <td>text</td>
+                    </tr>
+                    <tr>
+                      <td>1,005</td>
+                      <td>dashboard</td>
+                    </tr>
+                    <tr>
+                      <td>1,006</td>
+                      <td>dashboard</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+{% endblock main_content %}
