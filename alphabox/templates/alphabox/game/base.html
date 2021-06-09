@@ -38,6 +38,13 @@
       .multiselect-search {
         color: red;
       }
+      .step{
+        background-color: rgb(0, 140, 255);
+        color: aliceblue;
+        padding: 7px;
+        font-style: italic;
+        border-radius: 50%;
+      }
     </style>
 {% endblock stylesheet %}
 
@@ -79,14 +86,29 @@
                     <small >Utilisez la configuration par défaut en Cliquant sur <span class="badge badge-lg badge-success">commencer</span> sans modifier les champs</small> 
                   </div>   
 
-                  <div class="row mb-3">
+                  <div class="row mb-4">
                     <div class="form-label col-sm-6">
-                      <label for="gameTimer" class="mx-3">Durée du décompte ( <small>Temps pour saisir vos mots</small> )</label>
-                      <input type="range"  id="gameTimer" name="gameTimer" min="10" max="120"  class="form-control" placeholder="Date de début" required>
+                      <label for="gameTimer" class="mx-3"><span class="step">1</span> Comment vous voulez entrer vos mots ?</label> <br>
+                      <input type="radio"  id="keyBoard" name="gameEntryWay"  required='required' checked='checked'> <label for="keyBoard"> <i class="fas fa-keyboard"></i> Clavier</label> &nbsp;&nbsp;&nbsp;
+                      <input type="radio"  id="microphone" name="gameEntryWay"   required> <label for="microphone" > <i class="fas fa-microphone"></i> Microphone</label>
                     </div>
                     <div class="form-label col-sm-6">
-                      <label for="gameLang" class="mx-3">Quelle langue voulez vous utiliser pour cette partie?</label>
-                      <input type="text" id="gameLang" name="gameLang" class="form-control" placeholder="Quelle langue voulez vous utiliser pour cette partie?" required>
+                      <label for="gameLang" class="mx-3"><span class="step">2</span> Quelle langue voulez vous utiliser pour cette partie?</label>
+                      <select id="gameLang" name="gameLang" class="form-control"  required="required">
+                        <option value="en"> Anglais </option>
+                        <option value="fr"> Francais </option>
+                        <option value="es"> Espagnol </option>
+                        <option value="du"> Allemand </option>
+                        <option value="it"> Italien </option>
+                        <option value="ja"> Japonais </option>
+                        <option value="ur"> Russe </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="form-label col-sm-12">
+                      <label for="gameTimer" class="mx-3"><span class="step">3</span> Durée du décompte ( <small>Temps pour saisir vos mots</small> )</label>
+                      <input type="range"  id="gameTimer" name="gameTimer" min="10" max="120"  class="form-control" placeholder="Date de début" required>
                     </div>
                   </div>
                   <div class="input-group btn-group mb-2 col-sm-12">
@@ -208,7 +230,12 @@
           GAME_SETTING.lang = document.getElementById('gameLang').value
           GAME_SETTING.timer = document.getElementById('gameTimer').value
           //GAME_SETTING.lang =  document.getElementById('gameOthersMembers').value
-
+          
+          //on affiche le micro
+          if(document.getElementById("microphone").checked='checked'){
+            document.getElementById("entryInput").style.display = "none";
+            document.getElementById("entryMicrophone").style.display="block"
+          } 
 //          b - on charge l'animation pour sélectionner une lettre
           $('#countdownModal').modal('show');
           $('#countdownValue').html($('#virtualKeyBoard').html());
@@ -279,7 +306,9 @@
               if (distance < 1) {
                 clearInterval(x);
                 $('#countdownModal').modal('toggle');
-                //on appelle le jeu proprement dit                    
+                
+                 
+                //on appelle le jeu proprement dit  
                 game()
             }
             }, 1000);

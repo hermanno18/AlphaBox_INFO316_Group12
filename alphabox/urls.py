@@ -26,4 +26,13 @@ urlpatterns = [
     path("compte/connexion",views.connexion,name="connexion"),
     path("/",views.deconnection,name="deconnection"),
     path("mesUtilisateur",views.BASE,name="utilisateur"),
+
+    #sdfddf
+
+
+
+
+
+
+    #sdfsdfs
 ]

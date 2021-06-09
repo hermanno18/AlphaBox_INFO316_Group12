@@ -14,8 +14,11 @@ body {
    animation: Gradient 10s ease infinite;
  }
 
+ 
 .btn-danger{
     color: white !important;
+
+    display: none;
 }
 .link:hover{
     cursor:pointer;
@@ -149,3 +152,4 @@ body {
     opacity: 0;
   }
 }
+

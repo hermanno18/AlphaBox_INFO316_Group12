@@ -6,8 +6,8 @@ from django.core import serializers #pour restructurer des données en format JS
 from django.http import request
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from ..models import setting
-from nltk.corpus import wordnet as wn
+from ..models import setting 
+# from nltk.corpus import wordnet as wn # pour importer WordNet
 
 
 def guess_words(request):
@@ -22,9 +22,8 @@ def guess_words_settings(request):
         jsonFile = open(PARTY_PATH, "w")
         json.dump(PARTY_SETTINGS, jsonFile)
         jsonFile. close()
-        word = Word('good')
 
-        return JsonResponse({"je retourne : ": 'ss'}, status=200)
+        return JsonResponse({"je retourne : ": 'création du Json de savegarde de la partie OK'}, status=200)
     else:
         return JsonResponse({"error": "il y a eu un probleme"})
 
@@ -32,11 +31,12 @@ def guess_words_settings(request):
 
 #   /game/guessWords/find/
 def guess_words_findwords(request):
-    if request.method == "GET" and request.is_ajax() :
+    pass
+"""     if request.method == "GET" and request.is_ajax() :
         word =  request.GET['word']
         #on vérifie d'abord que l'utilisateur n'a pas deja entré ce mott en verifiant dans le fichier JSON correspondant
             #en fait on va créer un fichier pour stoquer 
-        syns = wn.synsets(word)
+ #       syns = wn.synsets(word)     # recherche des Sysets dans Wordnet
         if (len(syns) != 0):
             return JsonResponse({"found":True, "word":wordToJson(Word(word))}, status=200)
         else:
@@ -48,7 +48,7 @@ def guess_words_findwords(request):
         #on fait d'autres opértations comme sauver ses réglages en bd, pour l'utilisatteur qui est en ligne
     else:
         return JsonResponse({"error": "vous n'accedez pas coorectemenr à cette URL"})
-
+"""
 
 
 def wordToJson(word):
@@ -59,6 +59,9 @@ def wordToJson(word):
     JsonWord['POS'] = word.pos
     return JsonWord
 
+
+"""
+# classe pour creer des mots à partir des infos de Wordnet
 class Word():
     def __init__(self, name):
         if len(wn.synsets(name)) != 0: #si le mot existe meme d'abord
@@ -70,7 +73,7 @@ class Word():
             self.pos = self.setPOS()  #Part Of Speach
         else: return None
 
-    """donne la définition la plus proche du mot"""
+    #donne la définition la plus proche du mot
     def setDefinition(self):
         for syn in wn.synsets(self.value):
             if "01" in syn.name():
@@ -97,3 +100,4 @@ class Word():
                 if(name not in names):
                     names.insert(len(names), name)
             {}
+"""

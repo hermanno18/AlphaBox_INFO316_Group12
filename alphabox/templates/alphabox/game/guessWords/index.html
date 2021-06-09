@@ -7,7 +7,10 @@
                 <div class="row d-flex justify-content-center p-4 m-0">
                     <div class="col-xl-5 col-md-10 col-sm-12 d-flex justify-content-between">
                       <div class="col-11">
-                        <input type="text" class="form-control" name="" id="entryInput" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) {maFonction();}" autocomplete="address-level3" autofocus>
+                        <div id="spaceToEntry">
+                          <input type="text" class="form-control" name="" id="entryInput" onkeydown="if (event.keyCode == 13 || event.keyCode == 32) {maFonction();}" autocomplete="address-level3" autofocus>
+                          <div  class="d-flex justify-content-center" > <span class="p-4 bg-light rounded-circle text-primary " id="entryMicrophone" style="display: none;"><i  class="fas fa-microphone fa-6x" onclick="alert('on enregistre')"></i></span></div>
+                        </div>
                       </div>
                       <div class="col-1 d-flex  justify-content-center p-2 text-light" id="">
                         <i id="timerDisplay" class="title">00</i> s
@@ -252,24 +255,42 @@
           {{block.super}}
           <script lang="Javascript">
             function maFonction(){
+              if(navigator.onLine){ // si l'acces à internet est établit
+                
                     word =document.getElementById('entryInput').value
                     word = word.toLowerCase()
                     position = word.indexOf(GAME_SETTING.letter)
                     if(position == 0){ // si le mot qu'il a entré commence par la lettre sélectionée, on par chercher dans le dictionnaire
+                      
+                      url_api ="https://api.dictionaryapi.dev/api/v2/entries/"+ GAME_SETTING.lang+"/"+word
                       $.ajax({
-                        data: {"word" : word} , // on défini les données à envoyer
+                        data: {} , // on défini les données à envoyer
                         type: 'GET', // on précise la methode
-                        url: "{% url 'alphabox:game_guessWords_findWords' %}", //l'url vers laquelle AJAX doit diriger la requette
+                        url: url_api, //l'url vers laquelle AJAX doit diriger la requette
                         // on success 
                         success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
                           // alors on fait des choeses ici
-                            displayTheAnswer(response.found)
-                            console.log("my object: %o", response) // ca c'est la commande pour dumper un objet en console
+                            displayTheAnswer(true)
+                            addAlreadyGivenWord(response[0].word)
+                            console.log("my object: %o", response[0]) // ca c'est la commande pour dumper un objet en console
                         },
-                        // on error
-                        error: function(response) { //sinon
-                          //on réagi ici
-                          console.log("the error returned: %o", response)
+                        //au ca où on ne trouves pas
+                        error: function (xhr, ajaxOptions, thrownError) {
+                          if(xhr.status == 404) {
+                          // some error
+                            displayTheAnswer(false)
+                          }
+                          else if(xhr.status == 403) {
+                          // another error
+                            displayTheAnswer(false)
+                          }
+                          else if(xhr.status == 500) {
+                          // another error
+                            alert('erreur interne !')
+                          }
+                          else {
+                          // default error
+                          }
                         }
                       });
   
@@ -277,6 +298,9 @@
                       displayTheAnswer(false)
                     }
 
+              }else{
+                alert("Vous n'etes pas en ligne nous ne pouvons pas contacter nos serveurs, vérifieé votre connection internet")
+              }
                     function displayTheAnswer(word_is_correct){
                       if(!word_is_correct){
                         test = 'danger';
@@ -345,5 +369,16 @@
                     }
                 }, 1000);
              }
+
+
+
+
+             //fonction indépendantes
+            AlreadyGivenWords = []
+             
+             function addAlreadyGivenWord(word){
+                AlreadyGivenWords[AlreadyGivenWords.lenght-1] = word
+             }
          </script> 
+
           {% endblock script %}
