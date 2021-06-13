@@ -4,6 +4,73 @@
             <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a>
            <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
             {% endif %}
+
+            {% if "login" in request.COOKIES  and 1%}
+            <a class=" btn btn-outline-light mx-2" href="#" id="idConnexion">Bon retour</a>
+            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a>
+           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
+            {% endif %}
+
+          {% if "login" in request.COOKIES  and dashboard %}
+          <div class="btn-group mr-2">
+            <div class="btn-group p-0 m-0 justify-content-center">
+              <button type="button" id="invitations" class="btn btn-outline-warning mx-0 " data-toggle="popover" data-trigger="focus"> <i class="fas fa-user-plus"></i> invitations</button>
+              <div class="dropdown-menu overflow-auto" id="invitationList">
+                <div class="list-group  m-0 p-0"  style="width: 400px; height:400px">
+                    <div class="overflow-auto m-0 p-0" style="height: 400px;">
+                      <li  class="dropdown-menu list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Joueur1</h5>
+                          <small>3 min</small>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between">
+                          <a href="party_id.html" class="btn btn-sm btn-outline-success p-1" > <i class="fas fa-stick"></i>   Accepter </a> 
+                          <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-times-circle"></i> Accepter </a> 
+                        </div>
+                      </li>
+                      <li  class="dropdown-menu list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Joueur1</h5>
+                          <small>3 min</small>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between">
+                          <a href="party_id.html" class="btn btn-sm btn-outline-success p-1" > <i class="fas fa-stick"></i>   Accepter </a> 
+                          <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-times-circle"></i> Accepter </a> 
+                        </div>
+                      </li>
+                      <li  class="dropdown-menu list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Joueur1</h5>
+                          <small>3 min</small>
+                        </div>
+                        <div class="d-flex w-100 justify-content-between">
+                          <a href="party_id.html" class="btn btn-sm btn-outline-success p-1" > <i class="fas fa-stick"></i>   Accepter </a> 
+                          <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-times-circle"></i> Accepter </a> 
+                        </div>
+                      </li>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" id="publier" class="btn btn-sm btn-outline-primary" data-toggle="popover" data-trigger="focus"> <i class="fas fa-arrow-alt-circle-left"></i> Publier</button>
+            <div class="dropdown-menu overflow-auto" id="publierList">
+              <div class="list-group  m-0 p-0"  style="width: 400px; height:400px">
+                  <div class="overflow-auto m-0 p-0" style="height: 400px;">
+                    <li  class="dropdown-menu list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-facebook"></i> </a> 
+                        <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-twitter"></i></a> 
+                        <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-github"></i> </a> 
+                        <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-youtube"></i></a> 
+                      </div>
+                    </li>
+                  </div>
+              </div>
+            </div>
+          </div>
+           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
+            {% endif %}
+
             {% if "login" not in request.COOKIES %}
             <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Connexion</a>
             <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement">Enregistrement</a>

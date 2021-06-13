@@ -21,14 +21,23 @@
         </nav>
         <div class="container-fluid">
           <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-transparent" style="position: fixed !important">
               <div class="sidebar-sticky pt-3">
                 {% block stickySideBar %} {% endblock stickySideBar %}
               </div>
             </nav>
         
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-light h-100 overflow-auto" style="min-height: 520px">
-            {% block main_content %}{% endblock main_content %}
+            {% if page_name == "search" or not User %}  
+              <div class="mt-5 mt-5 d-flex justify-content-center">
+                <p class="col-md-5 text-justify alert alert-info">
+                  Vous accesez à cette page en tant que visiteur, les fonctionalité donc vous disposez se retrouvent donc réduites.
+                  veuillez vous <a href="javascript:void(0)" data-toggle="modal" data-target="#registerModal">inscricre</a> ou vous <a href="javascript:void(0)"  data-toggle="modal" data-target="#connexionModal">connecter</a> pour acceder à l'ensemble du contenu de cette page
+                </p>
+              </div>
+            {% else %}
+              {% block main_content %}{% endblock main_content %}
+            {% endif %}
             </main>
           </div>
         </div>
@@ -48,4 +57,24 @@
         }
     }
     </script>
+    <script type="text/javascript">
+      $("#invitations").popover({
+          title: '<h5>Invitations à des parties</h5>',
+          container: 'body',
+          placement: 'bottom',
+          html: true, 
+          content: function(){
+                return $('#invitationList').html();
+          }
+      });
+      $("#publier").popover({
+        title: '<h5>Partager votre tableau de bord sur : </h4>',
+        container: 'body',
+        placement: 'bottom',
+        html: true, 
+        content: function(){
+              return $('#publierList').html();
+        }
+    });
+      </script>
 {% endblock script %}

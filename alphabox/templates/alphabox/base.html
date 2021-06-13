@@ -16,8 +16,9 @@
             <link href="{% static 'alphabox/assets/css/sideMenu.css' %}" rel="stylesheet">
             <link href="{% static 'alphabox/assets/css/main.css' %}" rel="stylesheet">
             <link href="{% static 'alphabox/assets/icons/fontawesome/css/all.css' %}" rel="stylesheet">
-            <link href="{% static '' %}" rel="stylesheet">
-    
+            <script src="{% static 'alphabox/assets/js/jquery-3.5.1.min.js' %}"></script>
+            <script src="{% static 'alphabox/assets/js/popper.min.js' %}"></script>
+            <script src="{% static 'alphabox/assets/js/bootstrap.min.js' %}"></script>
         {% endblock stylesheet %}
             <!-- Bootstrap core CSS -->
     <style>
@@ -33,6 +34,28 @@
                 color: white;
                 padding: 9px;
                 text-align: center;
+            }
+            .botTriggerContainer{
+                position: fixed;
+                bottom: 40px;
+                left: 100px;
+                border-radius: 50%;
+                height: 75px;
+                width: 75px;
+            }
+            #botTrigger {
+            position: absolute;
+            z-index: 9;
+            background-color: #f1f1f1;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+            }
+
+            #botTriggerHeader {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+            color: #fff;
             }
     </style>
     </head>
@@ -58,15 +81,29 @@
             {% include "alphabox/includes/sideMenu.html" %}
             {% block content %}{% endblock content %}
     </div>
+    {% if not dashboard %}
     <div id="ManageSong" class="" onclick="testson()" >
         <i class="fas fa-2x fa-music"></i>
     </div>
-    
+    <div class="botTriggerContainer animated headShake infinite">
+        <div id="botTrigger" class="rounded-circle w-100 h-100 ">
+            <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+            <div id="botTriggerHeader" class="rounded-circle w-100 h-100 bg-primary">
+                <div class="w-100 h-50 d-flex justify-content-center">
+                    <div id="leftEye" class="rounded-circle bg-white h-75 w-25 mx-2 mt-2"></div>
+                    <div id="rightEye"  class="rounded-circle bg-white h-75 w-25 mx-2 mt-2"></div>
+                </div>
+                <div class="w-100 h-50 d-flex justify-content-center overflow-hidden ">
+                    <div class="rounded-circle bg-primary h-25 w-75 mx-2 position-absolute "></div>
+                    <div class="rounded-circle bg-white h-75 w-75 mx-2 mt-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     {% block script %}
-    <script src="{% static 'alphabox/assets/js/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'alphabox/assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'alphabox/assets/js/bootstrap.min.js' %}"></script>
+
     <script src="{% static 'alphabox/assets/js/mdb.min.js' %}"></script>
     <script src="{% static 'alphabox/assets/js/animationSideMenu.js' %}"></script>
     <script src="{% static 'alphabox/assets/js/howler/howler.js' %}"></script>
@@ -83,8 +120,53 @@
             $('#connexionModal').modal('show');
         });
         */
-    </script>
 
+
+        // Make the DIV element draggable:
+        dragElement(document.getElementById("botTrigger"));
+
+        function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        if (document.getElementById(elmnt.id + "Header")) {
+            // if present, the header is where you move the DIV from:
+            document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+        } else {
+            // otherwise, move the DIV from anywhere inside the DIV:
+            elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // get the mouse cursor position at startup:
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            // call a function whenever the cursor moves:
+            document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            // calculate the new cursor position:
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            // set the element's new position:
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+
+        function closeDragElement() {
+            // stop moving when mouse button is released:
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+        }
+    </script>
+    
     {% endblock script %}
 
     </body>

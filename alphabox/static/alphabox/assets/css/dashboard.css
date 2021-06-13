@@ -42,7 +42,13 @@
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
+  color:#fff;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+.sidebar-sticky .nav-link.courant{
+  color: #106acabe;
+  color: rgba(6, 40, 77, 0.897);
+  background-color: aliceblue;
 }
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
@@ -50,31 +56,6 @@
     position: -webkit-sticky;
     position: sticky;
   }
-}
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
-
-.sidebar .nav-link.active {
-  color: #106acabe;
-  color: rgba(6, 40, 77, 0.897);
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
 }
 
 /*

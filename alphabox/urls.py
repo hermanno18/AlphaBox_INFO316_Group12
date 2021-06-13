@@ -10,14 +10,19 @@ urlpatterns = [
 
     # Urls for the dashboard
     path("dashboard/evolution", views.dashboard_evolution , name="dashboard_evolution"),
+    path("dashboard/<str:userName>/evolution", views.dashboard_evolution , name="dashboard_evolution"),
     path("dashboard/profile", views.dashboard_profile , name="dashboard_profile"),
+    path("dashboard/<str:userName>/profile", views.dashboard_profile , name="dashboard_profile"),
     path("dashboard/program", views.dashboard_program , name="dashboard_program"),
+    path("dashboard/<str:userName>/program", views.dashboard_program , name="dashboard_program"),
     path("dashboard/friends", views.dashboard_friends , name="dashboard_friends"),
+    path("dashboard/<str:userName>/friends", views.dashboard_friends , name="dashboard_friends"),
     path("dashboard/others", views.dashboard_others , name="dashboard_others"),
+    path("dashboard/<str:userName>/others", views.dashboard_others , name="dashboard_others"),
 
     # Urls for the games
     # - Urls for the first game : "guess Words"
-    path("game/guessWords", views.guess_words , name="game_guessWords_home"),
+    path("game/guessWords/<str:subModule>", views.guess_words , name="game_guessWords_home"),
     path("game/guessWords/settings", views.guess_words_settings , name="game_guessWords_settings"),
     path("game/guessWords/find/", views.guess_words_findwords , name="game_guessWords_findWords"),
 

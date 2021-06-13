@@ -1,4 +1,5 @@
 {% extends './base.html' %}
+{% load static %}
 {% block title %}
 Profil - {{block.super}}
 {% endblock title %}
@@ -8,11 +9,44 @@ Profil - {{block.super}}
               NOTE ! - à ne pas afficher si l'utilisateur ne s'est pas deja inscrit
                     - mettre en lecture seule si l'utilisateurt qui visite cette page n'est pas le propriétaire du tableau de bord qu'il consulte
             -->
-              <h2 class="text-secondary"> consultez / modifiez vos infomarions personnelles </h2> <br>
-            <!-- partie pour  l'onglet "mon Profil"-->
-        
-              <form action="" method="post">
-                <div class="row">
+    <div class=" pt-5 pb-5 container-fluid  border-bottom">
+
+          <ul class="nav nav-tabs nav-justified  " role="tablist">
+            <li class="nav-item">
+              <a class="nav-link h4 active btn-primary" data-toggle="tab" href="#showProfile"> Profil de Hermanno</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link h4 btn-success" data-toggle="tab" href="#editProfile" >Modifier Votre Profil</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content ">
+            <div id="showProfile" class="container tab-pane active border-1" style="background:rgba(5, 81, 194, 0.576); border-bottom: 10px solid rgba(5, 81, 194, 0.15) "><br>
+              <div class="mt-5 d-flex justify-content-center">
+                <div class="col-md-6 text-center ">
+                  <div class="mb-4 d-flex justify-content-center " >
+                    <span class="rounded-circle " style="width: 200px; height: 200px;">
+                      <img class=" rounded-circle" src="{% static 'alphabox/assets/img/default-avatar.png' %}" alt="" width="100%" height="100%">
+                    </span>
+                  </div>
+                  <div>
+                    <p class="h5">Hermanno</p>
+                    <p class="h5"><a href="mailto:Hermann@gmail.com">Hermann@gmail.com</a></p>
+                  </div>
+                  <div>
+                    <p class="mt-5 ">
+                       Je suis un jouer affirmé depuis la création de la platte-forme ! normal,  c'est moi que l'ai fait ! 
+                       j'espere bien que toi et moi on s'affrontera un jour !!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="editProfile" class="container tab-pane fade " style="background:rgba(83, 235, 116, 0.446);  border-bottom: 10px solid rgba(5, 81, 194, 0.15) ;"><br>
+              <form action="" method="post" class="">
+              {% csrf_token %}
+                <div class="row  mt-3 p-4">
                   <div class="col-md-6 b-1">
                     <h3 class="text-secondary"> Infomations principales</h3>    
                     <hr>    
@@ -25,25 +59,30 @@ Profil - {{block.super}}
                       <input type="email" id="Mail" class="form-control" placeholder="E-mail" required>
                       <label for="Mail">E-mail </label>
                     </div>
-                    <div class="checkbox mb-3">
+                    <div class="checkbox mb-2">
                       <label>
-                        <input type="checkbox" value="accept-GCU" checked="checked"> Cacher mon tableau de bord
+                        <input type="checkbox" value="hideEmail" > Cacher mon addresse mail
                       </label> <br>
-                      <small> en décohant cette case, votre tableau de bord, et les informations qu'il contient seront visible par le public; en la laissant cochée, elles ne seront visible que par vos compagons de jeux </small>
+                      <label>
+                        <input type="checkbox" value="hideDashboard" checked="checked"> Cacher mon tableau de bord
+                      </label> <br>
+                      <div class="pl-5 justify-content">
+                        <small > en décohant cette case, votre tableau de bord, et les informations qu'il contient seront visible par le public; en la laissant cochée, elles ne seront visible que par vos compagons de jeux </small>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <h3 class="text-secondary"> <i class="bi-alarm"></i>Infomations complémentaires</h3> <hr>
                     <div class="form-label-group">
-                      <input type="text" id="o" name="" class="form-control" placeholder="Biographie" height="500px">
-                      <label for="o">Biographie</label>
+                      <input type="file" id="profile_img" name="profile_img" class="form-control" placeholder="Photo de profile" height="500px">
+                      <label for="profile_img">Photo de profile</label>
                     </div>
                     <div class="form-label-group">
                       <textarea  id="bio" name="UserBio" class="form-control" placeholder="Biographie" maxlength="500" rows="5"></textarea>
                     </div>
                   </div>
                 </div>
-                <div class="d-flex text-white justify-content-between align-items-center">
+                <div class="d-flex text-white justify-content-between align-items-center ">
                   <button type="submit" class="btn btn-lg btn-primary"><i class="fas fa-save"></i> Mettre à jour mes informations</button> 
                   <span data-toggle="modal" data-target="#editPasswordModal" class="btn btn-info"> <i class="fas fa-edit"></i> Modifier mon mot de passe </span>
                   <span data-toggle="modal" data-target="#confirmDeleteAccountModal" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> Supprimer mon compte</span>
@@ -60,8 +99,9 @@ Profil - {{block.super}}
                       </div>
                       <div class="modal-body">
                         <form class="form-signin">
+                          {% csrf_token %}
                           <div class="d-flex text-white justify-content-between align-items-center mb-2 text-dark">
-                            <img class="mb-4" src="assets/icons/bootstrapIcons/key.svg" alt="" width="70" height="70">
+                            <i class="mb-4 mx-3 fas fa-edit fa-4x"></i>
                             <div style="width: 75%;">
                               <h2 class="h3 mb-1 font-weight-normal text-info">Modifiez votre mot de passe</h2> <hr>
                             </div>
@@ -78,7 +118,7 @@ Profil - {{block.super}}
                             <input type="password" id="newConfirmPassword" class="form-control" placeholder="Confirmer le nouveau mot de passe" required>
                             <label for="newConfirmPassword">Confirmer le nouveau mot de passe</label>
                           </div>
-                          <button class="btn btn-lg btn-primary btn-block" type="submit">Mettre à jour</button>
+                          <button class="btn btn-lg btn-info btn-block" type="submit">Mettre à jour</button>
                         </form>          
                       </div>
                     </div>
@@ -95,8 +135,9 @@ Profil - {{block.super}}
                       </div>
                       <div class="modal-body">
                         <form class="form-signin">
+                            {% csrf_token %}
                           <div class="d-flex text-white justify-content-between align-items-center mb-2 text-dark">
-                            <img class="mb-4" src="assets/icons/bootstrapIcons/trash.svg" alt="" width="70" height="70" >
+                            <i class="mb-4 mx-3 fas fa-trash fa-4x"></i>
                             <div style="width: 75%;">
                               <h2 class="h3 mb-1 font-weight-normal text-danger"> Supprimer mon Compte</h2><hr>
                             </div>
@@ -117,4 +158,10 @@ Profil - {{block.super}}
                     </div>
                   </div>
                 </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+
 {% endblock main_content %}

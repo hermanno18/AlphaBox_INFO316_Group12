@@ -9,9 +9,11 @@ from django.shortcuts import render
 from ..models import setting 
 # from nltk.corpus import wordnet as wn # pour importer WordNet
 
-
-def guess_words(request):
-    return render(request, 'alphabox/game/guessWords/index.html')
+def guess_words(request, subModule):
+    context = {
+        "subModule" : subModule
+    }
+    return render(request, 'alphabox/game/guessWords/index.html', context)
 
 #   /game/guessWord/settings
 def guess_words_settings(request):

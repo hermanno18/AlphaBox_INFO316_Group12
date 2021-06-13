@@ -22,7 +22,7 @@
 
         <div class="col-md-4 animated fadeInRight mainModule  "  id="mainModule1">
           <div class="card mb-4 shadow-sm">
-            <a href="{% url 'alphabox:game_guessWords_home' %}">
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#SelectSuybModulesModal">
               <img src="{% static 'alphabox/assets/img/image4.jpeg' %}" class="bd-placeholder-img card-img-top" width="100%" height="225"  alt="">
             </a>
             <div class="card-body">
@@ -68,9 +68,34 @@
                   </div>
                 </div>
               </div>
+              <!-- Modal pour le choix de sous-module  -->
+              <div class="modal fade text-dark rounded"   id="SelectSuybModulesModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="SelectSuybModulesModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm modal-dialog-scrollable">
+                  <div class="modal-content rounded">
+                    <div class="modal-body bg-success-50 ">
+                      <div class="d-flex justify-content-between align-items-center text-default ">
+                        <div class="text-primary col-12">
+                            <a class="btn btn-outline-success col-12 my-2" href="{% url 'alphabox:game_guessWords_home' modules.typing %}" >
+                              écriture
+                            </a>
+                            <a class="btn btn-outline-primary col-12 my-2" href="{% url 'alphabox:game_guessWords_home' modules.prononciation %}" >
+                              Prononciation
+                            </a>
+                            <a  class="btn btn-outline-success col-12 my-2" href="{% url 'alphabox:game_guessWords_home' modules.listening %}">
+                              écoute
+                            </a>
+                            <a class="btn btn-outline-primary col-12 my-2" href="{% url 'alphabox:game_guessWords_home' modules.writing %}" >
+                              ecoute et écris
+                            </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
         <div class="col-md-4 animated fadeIn delay-2s mainModule" id="mainModule2">
           <div class="card mb-4 shadow-sm">
-            <a href="{% url 'alphabox:game_guessWords_home' %}">
+            <a href="{% url 'alphabox:game_guessWords_home' modules.typing  %}">
               <img src="{% static 'alphabox/assets/img/image2.png' %}" class="bd-placeholder-img card-img-top" width="100%" height="225"  alt="">
             </a>
             <div class="card-body">

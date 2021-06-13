@@ -10,5 +10,15 @@ def test(request):
     return render(request, "alphabox/test/test.html")
     
 def index(request):
-    return render(request, 'alphabox/home/index.html')
+
+    MODULES = {
+        "typing": "typing",
+        "prononciation": "prononciation",
+        "listening": "listening",
+        "writing": "writing",
+    }
+    context = {
+        'modules':MODULES   
+    }
+    return render(request, 'alphabox/home/index.html',context )
 

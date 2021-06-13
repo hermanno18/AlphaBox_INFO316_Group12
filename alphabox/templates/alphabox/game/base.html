@@ -59,6 +59,54 @@
           <div class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3">
             <h2 class="masthead-brand d-flex text-white justify-content-between align-items-center m-0 mx-3"><i class="fas fa-2x fa-gamepad animated headShake slow infinite"></i> <span>AlphaBox</span></h2>
             <div class="inner">
+              <a href="javascript:void(0)" class="mx-2 btn btn-primary p-1" id="bonus" data-toggle='popover' data-trigger="focus"> <i class="fa fa-1x fa-plus-circle"></i> Bonus & Tips</a>
+                <div class="dropdown-menu overflow-auto" id="bonusList">
+                  <div class="list-group  m-0 p-0"  style="width: 400px; height:400px">
+                      <div class="overflow-auto m-0 p-0" style="height: 400px;">
+                        <li  class="dropdown-menu list-group-item list-group-item-action">
+                          <div class="d-flex w-100 justify-content-between">
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-facebook"></i> </a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-twitter"></i></a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-github"></i> </a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-youtube"></i></a> 
+                          </div>
+                        </li>
+                      </div>
+                  </div>
+                </div>
+              <a href="javascript:void(0)" class="mx-2 btn btn-danger p-1"  id="quit_party"> <i class="fa fa-1x fa-power-off"></i> Quitter</a>
+              <div class="dropdown-menu overflow-auto" id="confirm_quit_party">
+                <div class="list-group  m-0 p-0"  style="width: 400px; height:400px">
+                    <div class="overflow-auto m-0 p-0" style="height: 400px;">
+                      <li  class="dropdown-menu list-group-item list-group-item-action">
+                        quitter la partie en cours, entrainera la perte de vos point 
+                        <div class="d-flex w-100 justify-content-between">
+                          <a href="index.html" onclick=""class="btn btn-sm btn-succes p-1"> <i class=""></i> confirmer </a> 
+                        </div>
+                      </li>
+                    </div>
+                </div>
+              </div>
+              <script>
+                $("#bonus").popover({
+                  title: "<h5>besoin d'aide ? vous pouvez utilisez : </h4>",
+                  container: 'body',
+                  placement: 'bottom',
+                  html: true, 
+                  content: function(){
+                        return $('#bonusList').html();
+                  }
+              });
+              $("#quit_party").popover({
+                title: "<h5>Vous voulez vraiment abendonner la partie en cours ? </h4>",
+                container: 'body',
+                placement: 'bottom',
+                html: true, 
+                content: function(){
+                      return $('#confirm_quit_party').html();
+                }
+            });
+              </script>
               <a href="javascript:void(0)" class="mx-2 btn btn-outline-white p-1" onclick="openNav()"> <i class="fa fa-1x fa-clipboard-list"></i> Menu</a>
             </div>
           </div>        
@@ -87,48 +135,55 @@
                   </div>   
 
                   <div class="row mb-4">
-                    <div class="form-label col-sm-6">
-                      <label for="gameTimer" class="mx-3"><span class="step">1</span> Comment vous voulez entrer vos mots ?</label> <br>
-                      <input type="radio"  id="keyBoard" name="gameEntryWay"  required='required' checked='checked'> <label for="keyBoard"> <i class="fas fa-keyboard"></i> Clavier</label> &nbsp;&nbsp;&nbsp;
-                      <input type="radio"  id="microphone" name="gameEntryWay"   required> <label for="microphone" > <i class="fas fa-microphone"></i> Microphone</label>
-                    </div>
-                    <div class="form-label col-sm-6">
+                    
+                    <div class="form-label col-sm-12">
                       <label for="gameLang" class="mx-3"><span class="step">2</span> Quelle langue voulez vous utiliser pour cette partie?</label>
-                      <select id="gameLang" name="gameLang" class="form-control"  required="required">
-                        <option value="en"> Anglais </option>
-                        <option value="fr"> Francais </option>
-                        <option value="es"> Espagnol </option>
-                        <option value="du"> Allemand </option>
-                        <option value="it"> Italien </option>
-                        <option value="ja"> Japonais </option>
-                        <option value="ur"> Russe </option>
-                      </select>
+                      <div class="row">
+                        <div class="col-md-11 ml-3">
+                          <select id="gameLang" name="gameLang" class="form-control"  required="required">
+                            <option value="en"> Anglais </option>
+                            <option value="fr"> Francais </option>
+                            <option value="es"> Espagnol </option>
+                            <option value="du"> Allemand </option>
+                            <option value="it"> Italien </option>
+                            <option value="ja"> Japonais </option>
+                            <option value="ur"> Russe </option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="form-label col-sm-12">
-                      <label for="gameTimer" class="mx-3"><span class="step">3</span> Durée du décompte ( <small>Temps pour saisir vos mots</small> )</label>
-                      <input type="range"  id="gameTimer" name="gameTimer" min="10" max="120"  class="form-control" placeholder="Date de début" required>
+                      <label for="gameTimer" class="mx-3"><span class="step">3</span> Durée du décompte</label>
+                      <div class="col-12">
+                        <input type="range"  id="gameTimer" name="gameTimer" min="10" max="120" onchange="$('#inputRangeselectedValue').html($('#gameTimer').val())" class="form-control" value="40" required>
+                      </div>
+                      <div class="col-12 d-flex justify-content-between">
+                        <span>
+                          <span id="inputRangeselectedValue">00</span> Secondes
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div class="input-group btn-group mb-2 col-sm-12">
-                      <span class="input-group-addon"><i class="fas fa-times-circle"></i></span>
-                      <select  id="gameOthersMembers" name="gameOthersMembers" data-role="multiselect" multiple="multiple">
-                      <option value="lab">joueur 1</option>
-                      <option value="proseminar">joueur 9</option>
-                      <option value="proseminar">joueur 2</option>
-                      <option value="proseminar">joueur 5</option>
-                      <optgroup label="Autres">
-                      <option value="analysis">joueur</option>
-                      <option value="algebra">joueur Algebra</option>
-                      <option value="discrete">joueur Mathematics</option>
-                      <option value="numerical">joueur Analysis</option>
-                      <option value="probability">joueur Theory</option>
-                      </optgroup>
-                    </select>
+                  <div class="row">
+                    <div class="input-group btn-group mb-2 col-sm-12">
+                      <label for="gameLang" class="mx-3"><span class="step">4</span> Vous voulez ajouter des joueurs?</label>
+                        <select  id="gameOthersMembers" name="gameOthersMembers" data-role="multiselect" multiple="multiple">
+                        <option value="lab">joueur 1</option>
+                        <option value="proseminar">joueur 9</option>
+                        <option value="proseminar">joueur 2</option>
+                        <option value="proseminar">joueur 5</option>
+                        <optgroup label="Autres">
+                        <option value="analysis">joueur</option>
+                        <option value="algebra">joueur Algebra</option>
+                        <option value="discrete">joueur Mathematics</option>
+                        <option value="numerical">joueur Analysis</option>
+                        <option value="probability">joueur Theory</option>
+                        </optgroup>
+                      </select>
+                    </div>
                   </div>
-
-
                   <div class="btn-group btn-lg d-flex ">
                     <button onclick="setGameParameters()" class="btn btn-success" class="close" data-dismiss="modal" aria-label="Close"> <i class="fas fa-check-circle"></i> Commencer</button>
                     <a href="{% url 'alphabox:home' %}" class="btn btn-danger "> <i class="fas fa-times-circle"></i> Annuler</a>
@@ -150,38 +205,36 @@
             </div>
           </div>
         </div>
-
-        <p id="repose">
-
-        </p>
-        <div class="col-12 bg-light" id="virtualKeyBoard">
-          <div class="virtualKeyBoardDisplay row d-flex justify-content-between">
-            <span class="letter btn btn-dark" onclick="setGameLetter('a')">a</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('b')">b</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('c')">c</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('d')">d</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('e')">e</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('f')">f</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('g')">g</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('h')">h</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('i')">i</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('j')">j</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('k')">k</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('l')">l</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('m')">m</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('n')">n</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('o')">o</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('p')">p</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('q')">q</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('r')">r</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('s')">s</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('t')">t</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('u')">u</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('v')">v</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('w')">w</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('x')">x</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('y')">y</span>
-            <span class="letter btn btn-dark" onclick="setGameLetter('z')">z</span>
+        <div class="hidden" style="display: none;">
+          <div class="col-12 bg-light" id="virtualKeyBoard">
+            <div class="virtualKeyBoardDisplay row d-flex justify-content-between">
+              <span class="letter btn btn-dark" onclick="setGameLetter('a')">a</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('b')">b</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('c')">c</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('d')">d</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('e')">e</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('f')">f</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('g')">g</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('h')">h</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('i')">i</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('j')">j</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('k')">k</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('l')">l</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('m')">m</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('n')">n</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('o')">o</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('p')">p</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('q')">q</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('r')">r</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('s')">s</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('t')">t</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('u')">u</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('v')">v</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('w')">w</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('x')">x</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('y')">y</span>
+              <span class="letter btn btn-dark" onclick="setGameLetter('z')">z</span>
+            </div>
           </div>
         </div>
 {% endblock content %}
@@ -206,9 +259,6 @@
         $(window).on('load', function() {
             $('#configGameModal').modal('show');
           });
-        
-
-
         // définition de ma structure de donnée pour gerer les paramettres (elle sera envoyée via AJAx pour etre sauvée
         GAME_SETTING = {
           author: "Hermanno", // pas trop nécéssaire
@@ -222,127 +272,10 @@
         }
         GAME_SETTING.id = GAME_SETTING.created_at+"_"+GAME_SETTING.author+"_"+GAME_SETTING.gameModule
 
-
-        // la fonction qui défini les paramettres du jeu
-        function setGameParameters(){
-
-//          a - on insere donc ces infos dans l'objet GAME_SETTING........ o
-          GAME_SETTING.lang = document.getElementById('gameLang').value
-          GAME_SETTING.timer = document.getElementById('gameTimer').value
-          //GAME_SETTING.lang =  document.getElementById('gameOthersMembers').value
-          
-          //on affiche le micro
-          if(document.getElementById("microphone").checked='checked'){
-            document.getElementById("entryInput").style.display = "none";
-            document.getElementById("entryMicrophone").style.display="block"
-          } 
-//          b - on charge l'animation pour sélectionner une lettre
-          $('#countdownModal').modal('show');
-          $('#countdownValue').html($('#virtualKeyBoard').html());
-          document.getElementById('entryInput').disabled = false
-
-          }
-
-
-
-
-
-
-
-
-
-
-
-          //scripts qui peuvent etre déplacés dans un fichier JS externe
-          function setGameLetter(letter){
-//            a - on insere donc ces infos dans l'objet GAME_SETTING          
-            GAME_SETTING.letter = letter
-              $('#countdownValue').html("<div class='d-flex justify-content-center' ><i class='fas fa-cog fa-spin fa-6x'></i></div>")
-            
-//            on incrémente l'attibut tours 
-            GAME_SETTING.turn ++
-
-//            c - on envois une requette Ajax pour sauver ses réglages
-            //début AJAX
-
-            $.ajax({
-                data: GAME_SETTING , // on récupere les données du formulaire
-                type: 'GET', // on précise la methode
-                url: "{% url 'alphabox:game_guessWords_settings' %}", //l'url vers laquelle AJAX doit diriger la requette
-                // on success 
-                success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
-                  // alors on fait des choeses ici
-                    document.getElementById("repose").innerHTML= "vous apprenez "+response.lang
-                    console.log("my object: %o", response) // ca c'est la commande pour dumper un objet en console
-                },
-                // on error
-                error: function(response) { //sinon
-                  //on réagi ici
-                    console.log("the error returned: %o", response)
-                }
-            });
-            //fin AJAX
-
-//          puis je démarre le compte à rebour 
-            // Set the date we're counting down to
-            var countDownDate = new Date().getTime()+6000;
-            // Update the count down every 1 second
-            var x = setInterval(function() {
-
-              // Get today's date and time
-              var now = new Date().getTime();
-
-              // Find the distance between now and the count down date
-              var distance = countDownDate - now;
-
-              // Time calculations for days, hours, minutes and seconds
-              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-              // Display the result in the element with id="demo"
-              
-              HTML =  seconds + "s ";
-              $('#countdownValue').html(HTML)
-              // If the count down is finished, write some text
-              if (distance < 1) {
-                clearInterval(x);
-                $('#countdownModal').modal('toggle');
-                
-                 
-                //on appelle le jeu proprement dit  
-                game()
-            }
-            }, 1000);
-            
-          }
+        //définition de quelques variables JS se basant sur des variables de Django
+        // IMPORTANT !!!!!!
+        urlAjax_Setting = "{% url 'alphabox:game_guessWords_settings' %}";
+        MODULE = '{{subModule}}';
     </script>
-    <script>
-      //notes : 
-      /*
-        Ordre d'éxécussion
-        1 - on définit les réglages (temps, langue, autres joeurs)
-            a - on insere donc ces infos dans l'objet GAME_SETTING........ ok
-            b - on charge l'animation pour sélectionner une lettre.........ok
-        2 - on sélectionne une lettre 
-            a - on insere donc ces infos dans l'objet GAME_SETTING.........ok
-            b - on incrémente l'attibut tours .............................ok
-            c - on envois une requette Ajax pour sauver ses réglages.......
-            d - on lance le compte à rebourd pour lancer le jeu............ok
-        3 - on démarre le timer et joue
-            a - l'utilisateur entre un mot.................................ok
-            b - on s'assure que le mot commence par la lettre qu'il a pr"cedement enttrée
-            b - on envois une requette Ajax pour vérifier la validité du mot 
-                on retourne un bolleen et on écrit dans un fichier Json tous les détails du mot (définition, image, synonymes, antonymes...) 
-            c - on ajoute le mot saisit avec le style correspondant (si c'est correct 'success' sinon 'danger') dans la liste 'ul' corresponante
-                on incrémente le nombre de mots trouvés (dans l'afichage et dans l'objet)
-        4 - quand le ttimer s'arrette
-            a - on cache le champ de saisie
-            b - on  (JS) lit dans le fichier Json (écrit par pyton) pour afficher les mots que l'utiliasteur a saisit
-                et on affiche ces mots dans un modal de telle sorte que s'il clique dessu il a leur définittion et tout le tralala
-            c - dans le meme modal, on affiche 5 mots que l'utilisateur n'a pas donné de telle sorte que s'il clique dessu il a leur définittion et tout le tralala
-            d - on sauvegarde sa partie (ses points, ...), et la liste de mots appris
-        5 - il peut cliquer sur continuer ou quitter
-            a - s'il clique sur quitter on le redireige à la homePage
-            b - s'il clique sur continuer on recommence le processus à partir de 2 (on lui demande de choisir une lettre etc)
-      */
-    </script>
+    <script src="{% static 'alphabox/assets/js/games/index.js' %}"></script>
 {% endblock script %}

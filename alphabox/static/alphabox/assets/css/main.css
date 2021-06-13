@@ -17,8 +17,6 @@ body {
  
 .btn-danger{
     color: white !important;
-
-    display: none;
 }
 .link:hover{
     cursor:pointer;
