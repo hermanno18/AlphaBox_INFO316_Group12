@@ -19,6 +19,7 @@
                   <div id="collapseDashbord" class="collapse show bg-transparent" aria-labelledby="headingOne" data-parent="#menuAccordion">
                     <div class="card-body bg-dark py-1 px-2 pl-4">
                     <ul class="nav flex-column ">
+                        {% if "login1" in request.COOKIES or  "remember" in request.COOKIES %}
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'alphabox:dashboard_evolution' %}">Evolution</a>
                       </li>
@@ -34,6 +35,23 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'alphabox:dashboard_others' %}">Autres...</a>
                       </li>
+                        {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_evolution' %}">Evolution</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_profile' %}">Profil</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_program' %}">Programmes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_friends' %}">Camarade de Jeu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'alphabox:dashboard_others' %}">Autres...</a>
+                      </li>
+                        {% endif %}
                     </ul>
                     </div>
                   </div>

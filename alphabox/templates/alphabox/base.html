@@ -81,6 +81,7 @@
             {% include "alphabox/includes/sideMenu.html" %}
             {% block content %}{% endblock content %}
     </div>
+
     {% if not dashboard %}
     <div id="ManageSong" class="" onclick="testson()" >
         <i class="fas fa-2x fa-music"></i>
@@ -102,12 +103,44 @@
     </div>
     {% endif %}
 
+            <!-- Modal qui s'achiche pour alerter qu'un module n'est pas encore pret  -->
+    <div class="modal fade text-dark rounded"   id="AlertModuleNotReady" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="SelectSuybModulesModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm modal-dialog-scrollable">
+        <div class="modal-content rounded">
+        <div class="modal-body bg-success-50 ">
+            <div class="d-flex justify-content-between align-items-center text-default ">
+            <div class=" col-12">
+                <div class="col-md-12 text-center">
+                    <h5 class="text-info"> Cette partie de l'application n'est pas encore prète </h5>
+                    <hr>
+                    <p  class="text-center text-dark ">
+                        Notre équipe de dévoleppement travaille à fond, et ajoute de nouvelles fonctions au fur et à mesure qu'elle les développe.
+                        <br>
+                        <br>
+                        Cette partie de l'application arrvera tres certainement dans les prochaines mises à jour!     
+                    </p>
+                </div>
+                <a class="btn btn-danger col-12 my-2" href="javascript:void(0)" data-dismiss="modal" aria-label="Close" >
+                    Retour
+                </a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
     {% block script %}
 
     <script src="{% static 'alphabox/assets/js/mdb.min.js' %}"></script>
     <script src="{% static 'alphabox/assets/js/animationSideMenu.js' %}"></script>
     <script src="{% static 'alphabox/assets/js/howler/howler.js' %}"></script>
     <script src="{% static 'alphabox/assets/js/howler/incription_connection.js' %}"></script>
+    {% if "login1" in request.COOKIES %}
+    <script>document.getElementById("idEnregistrement").textContent=getCookie('login1')</script>
+    {% elif "remember" in request.COOKIES %}
+    <script>document.getElementById("idEnregistrement").textContent=getCookie('remember')</script>
+    {% endif %}
     <script type="text/javascript">
         //variable pour spécifier la source des sons, juste avant de charger le script de gestion de son
         var SOUNDS_PATH ="{% static 'alphabox/assets/sounds/' %}"

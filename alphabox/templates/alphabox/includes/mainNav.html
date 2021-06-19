@@ -1,15 +1,18 @@
           <ul class="px-3 d-flex text-white justify-content-between align-items-center m-0">
-            {% if "login" in request.COOKIES %}
-            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Bon retour</a>
-            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a>
-           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
+            {% if "login1" in request.COOKIES %}
+            <h2 id="idConnexion" class="mx-5">BON-RETOUR</h2>
+            <h2 id="idEnregistrement" class="mx-2"></h2>
+
+            {% elif "remember" in request.COOKIES %}
+            <h2 id="idConnexion" class="mx-5">BON-RETOUR</h2>
+            <h2 id="idEnregistrement" class="mx-2"></h2>
+
+            {% else %}
+            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Connexion</a>
+            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement">Enregistrement</a>
             {% endif %}
 
-            {% if "login" in request.COOKIES  and 1%}
-            <a class=" btn btn-outline-light mx-2" href="#" id="idConnexion">Bon retour</a>
-            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a>
-           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
-            {% endif %}
+
 
           {% if "login" in request.COOKIES  and dashboard %}
           <div class="btn-group mr-2">
@@ -69,11 +72,6 @@
             </div>
           </div>
            <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
-            {% endif %}
-
-            {% if "login" not in request.COOKIES %}
-            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Connexion</a>
-            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement">Enregistrement</a>
             {% endif %}
 
             <form action="#" class=" " >
