@@ -1,0 +1,76 @@
+{% extends '../base.html' %}
+          {% block gameUtils %}
+            
+          {% endblock gameUtils %}
+
+          {% block gameCanvas %}
+                <div class="row d-flex justify-content-center p-4 m-0">
+                    <div class="col-xl-5 col-md-10 col-sm-12 d-flex justify-content-between">
+                      <div class="col-11">
+                        <div id="spaceToEntry">
+                          <div class="col-md-12  d-flex justify-content-center">
+                              <span class="btn-xl  btn-dark"> bonjour</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-1 d-flex  justify-content-center p-2 text-light" id="">
+                        <i id="timerDisplay" class="title h2">00</i><span class="h5">s</span> 
+                      </div>
+                    </div>
+                </div>
+                <div class="row p-3 m-0  d-flex justify-content-center">
+                  <div class="col-md-10 bg-white p-4 rounded d-flex justify-content-between">
+                    <div class = 'col-sm-2 btn btn-outline-primary'>UnMotAuHasard</div>
+                    <div class = 'col-sm-2 btn btn-outline-success'>oui-oui</div>
+                    <div class = 'col-sm-2 btn btn-outline-primary'>leVrai</div>
+                    <div class = 'col-sm-2 btn  btn-outline-success' >Hasard</div>
+                  </div>
+                </div>
+                <div class=" row justify-content-center p-3 m-0">
+                    <div class="col-xl-3 col-lg-4 col-md-5 col-sm-6 col-xm-10 animated fadeInRight mainModule  "  id="mainModule1">
+                        <div class="text-white pb-1 d-flex justify-content-between">
+                            <div class="">
+                                <h3>Vous :</h3>
+                            </div>
+                            <div class="bg-dark p-2 rounded-sm  " >
+                                <span class="text-success"><i class="fas fa-check-circle"></i> <span id="nbCorrect">0 </span></span> |
+                                <span class="text-danger"><i class="fas fa-times-circle"></i> <span id="ndErrors"> 0 </span></span>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm" style="max-height: 250px; min-height: 120px;">
+                            <div class="card-body overflow-auto p-0 m-0" >
+                                <ul class="list-group text-white table-hover " id="liste">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="hiden" id="timeOutModal" style="display: none;">
+                  <div>
+                    <center> <h1>Temps écoulé !! </h2></center>
+                      <p> Voici 5 mots que tu aurais pu entrer : </p>
+                      <ul class='list-group text-white table-hover' >
+                        <li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>
+                        <li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>
+                        <li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>
+                        <li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>
+                        <li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success b d-flex justify-content-between align-items-center'> mot1</li>
+                      </ul>
+                      <p> Vous pouvez consulter  <a href='#'>les mots que vous avez entré</a> </p>
+                      <div class='btn-group btn-lg d-flex '>
+                        <button onclick='setGameParameters()' class='btn btn-success' class='close' data-dismiss='modal' aria-label='Close'> <i class='fas fa-check-circle'></i> Continuer</button>
+                        <a href="{% url 'alphabox:home' %}" class='btn btn-danger'> <i class='fas fa-times-circle'></i> Annuler</a>                      </div>
+                  </div>
+                </div>
+                <div style="display: none;">
+                  <input type="text" name="" value="" id="ajaxTestWordsCible">
+                </div>
+          {% endblock gameCanvas %}
+{% block script %}
+{{block.super}}
+<script lang="Javascript">
+
+</script> 
+
+{% endblock script %}
