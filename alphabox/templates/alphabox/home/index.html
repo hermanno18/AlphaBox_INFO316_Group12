@@ -55,7 +55,7 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
-                          lor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
+                            lor sit amet consectetur adipisicing elit. Repellendus fuga nulla nam consequatur fugiat, eum sapiente exercitationem dolores dolorum dolor, nesciunt accusantium optio repudiandae est mollitia iure nostrum, voluptas ipsum!
                           </p>
                           <div style="text-align:right">
                             <button type="button" class="left btn btn-lg btn-primary"  data-dismiss="modal" aria-label="Close">
@@ -95,12 +95,12 @@
               </div>
         <div class="col-md-4 animated fadeIn delay-2s mainModule" id="mainModule2">
           <div class="card mb-4 shadow-sm">
-            <a href="{% url 'alphabox:game_guessWords_home' modules.typing  %}">
+            <a href="{% url 'alphabox:game_learnMeaning_home' %}">
               <img src="{% static 'alphabox/assets/img/image2.png' %}" class="bd-placeholder-img card-img-top" width="100%" height="225"  alt="">
             </a>
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
-                <span class=" title text-success">Learning Words</span>
+                <span class=" title text-success">Trouvez le sens </span>
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#descriptionBloc2">Description</button>
                 </div>
@@ -143,7 +143,7 @@
               </div>
         <div class="col-md-4 animated fadeInLeft delay-1s mainModule" id="mainModule3">
           <div class="card mb-4 shadow-sm">
-            <a href="" class="">
+            <a href="{% url 'alphabox:game_useWords_home' %}" class="">
               <img src="{% static 'alphabox/assets/img/image3.jpeg' %}" class="bd-placeholder-img card-img-top " width="100%" height="225"  alt="">
             </a>
             <div class="card-body">

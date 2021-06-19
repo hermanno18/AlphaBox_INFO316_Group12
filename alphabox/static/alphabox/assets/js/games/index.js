@@ -10,7 +10,6 @@ function setGameParameters(){
     $('#countdownModal').modal('show');
     $('#countdownValue').html($('#virtualKeyBoard').html());
     document.getElementById('entryInput').disabled = false
-
 }
 
 
@@ -24,7 +23,8 @@ function setGameLetter(letter){
 
 //            c - on envois une requette Ajax pour sauver ses réglages
             //début AJAX
-
+            //on vide la liste des précedents mots recomendés
+            $("#randomWordsList").html("")
             $.ajax({
                 data: GAME_SETTING , // on récupere les données du formulaire
                 type: 'GET', // on précise la methode
@@ -32,12 +32,16 @@ function setGameLetter(letter){
                 // on success 
                 success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
                     // alors on fait des choeses ici
-                    console.log("my object: %o", response) // ca c'est la commande pour dumper un objet en console
-                },
+                    console.log("réponse: %o", response.randomWords) // ca c'est la commande pour dumper un objet en console
+                    for (let index = 0; index < response.randomWords.length; index++) {
+                      const randWord = "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success '>"+response.randomWords[index]+"</li>" ;
+                      $("#randomWordsList").html($("#randomWordsList").html()+randWord)
+                    }
+                  },
                 // on error
                 error: function(response) { //sinon
                     //on réagi ici
-                    console.log("the error returned: %o", response)
+                    console.log("the error returned: %o", 'incorrect')
                 }
             });
             //fin AJAX
@@ -94,8 +98,9 @@ function game(sub_module){
       $('#timerDisplay').html(displayTimer)
 
       if (distance < 1) {
-        // une requette AJAX ici pour savegarder l'etat des donnes en BD
+        // une requette AJAX ici pour savegarder l'etat des donnes en BD et récuperer les mots au hasards
           clearInterval(x);
+          
           output = $("#timeOutModal").html()
           $('#countdownValue').html(output)
           $('#countdownModal').modal('toggle');

@@ -22,9 +22,16 @@ urlpatterns = [
 
     # Urls for the games
     # - Urls for the first game : "guess Words"
-    path("game/guessWords/<str:subModule>", views.guess_words , name="game_guessWords_home"),
     path("game/guessWords/settings", views.guess_words_settings , name="game_guessWords_settings"),
+    path("game/guessWords/<str:subModule>/play", views.guess_words , name="game_guessWords_home"),
     path("game/guessWords/find/", views.guess_words_findwords , name="game_guessWords_findWords"),
+
+
+    # Urls for the games
+    # - Urls for the first game : "guess Words"
+    path("game/learnMeaning", views.learningMeaning , name="game_learnMeaning_home"),
+    path("game/usingWords", views.usingWords , name="game_useWords_home"),
+
 
     # Urls for the inscription
     path("compte/inscription",views.inscription,name="inscription"),

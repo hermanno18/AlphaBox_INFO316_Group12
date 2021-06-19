@@ -1,13 +1,28 @@
 #views for the games module
 import json
 from json.encoder import JSONEncoder
+from os import getrandom
 from django.http import JsonResponse
 from django.core import serializers #pour restructurer des données en format JSOn
 from django.http import request
 from django.http.response import HttpResponse
 from django.shortcuts import render
+import random
 from ..models import setting 
+
 # from nltk.corpus import wordnet as wn # pour importer WordNet
+PATH_TO_DICT = "alphabox/json/dict/dictionnary_"
+
+def game_random_words(dic):
+    entry_list = list(dic.items())
+    random_entries = []
+    i = 0
+    while i < 5:
+        rand = random.choice(entry_list)[0]
+        if (rand not in random_entries):
+            random_entries.append(rand)
+            i+=1
+    return random_entries
 
 def guess_words(request, subModule):
     context = {
@@ -17,19 +32,21 @@ def guess_words(request, subModule):
 
 #   /game/guessWord/settings
 def guess_words_settings(request):
-    
     if request.method == "GET" and request.is_ajax() :
         PARTY_SETTINGS = request.GET
-        PARTY_PATH = "alphabox/json/"+PARTY_SETTINGS["id"]+".json"   #pour stoquer tout ce qui concerne la partie
+        """PARTY_PATH = "alphabox/json/"+PARTY_SETTINGS["id"]+".json"   #pour stoquer tout ce qui concerne la partie
         jsonFile = open(PARTY_PATH, "w")
         json.dump(PARTY_SETTINGS, jsonFile)
         jsonFile. close()
-
-        return JsonResponse({"je retourne : ": 'création du Json de savegarde de la partie OK'}, status=200)
+        """
+        with open(PATH_TO_DICT+PARTY_SETTINGS['letter']) as file:
+            miniDic = json.load(file)
+        return JsonResponse({"dict":miniDic, "randomWords": game_random_words(miniDic)}, status=200)
     else:
         return JsonResponse({"error": "il y a eu un probleme"})
 
     #return render(request, 'alphabox/game/guessWords/index.html') #par défaut c"esr ca que ca fait 
+
 
 #   /game/guessWords/find/
 def guess_words_findwords(request):
@@ -103,3 +120,12 @@ class Word():
                     names.insert(len(names), name)
             {}
 """
+
+# section pour le module Learning meaning
+def learningMeaning(request):
+    context= {}
+    return render(request, 'alphabox/game/learnMeaning/index.html', context)
+
+def usingWords(request):
+    context= {}
+    return render(request, 'alphabox/game/usingWords/index.html')
