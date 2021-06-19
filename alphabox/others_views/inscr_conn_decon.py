@@ -3,7 +3,6 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from alphabox.models import *
-import bcrypt
 
 USERNAME=None
 
