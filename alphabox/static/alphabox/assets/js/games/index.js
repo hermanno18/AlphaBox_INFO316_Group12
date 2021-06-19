@@ -12,7 +12,6 @@ function setGameParameters(){
     document.getElementById('entryInput').disabled = false
 }
 
-
 function setGameLetter(letter){
 //            a - on insere donc ces infos dans l'objet GAME_SETTING          
             GAME_SETTING.letter = letter
@@ -20,7 +19,6 @@ function setGameLetter(letter){
             
 //            on incrémente l'attibut tours 
             GAME_SETTING.turn ++
-
 //            c - on envois une requette Ajax pour sauver ses réglages
             //début AJAX
             //on vide la liste des précedents mots recomendés
@@ -29,6 +27,7 @@ function setGameLetter(letter){
                 data: GAME_SETTING , // on récupere les données du formulaire
                 type: 'GET', // on précise la methode
                 url: urlAjax_Setting, //l'url vers laquelle AJAX doit diriger la requette
+                async: false,
                 // on success 
                 success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
                     // alors on fait des choeses ici
@@ -36,6 +35,28 @@ function setGameLetter(letter){
                     for (let index = 0; index < response.randomWords.length; index++) {
                       const randWord = "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success '>"+response.randomWords[index]+"</li>" ;
                       $("#randomWordsList").html($("#randomWordsList").html()+randWord)
+                    }
+                    if (GAME_SETTING.gameModule == "guesWords"  || MODULE =='listening' || MODULE =='writing'  ){
+                       if(MODULE =='typing'){
+                         set_learningWords_typing(response.randomWords)
+                       }
+                       if(MODULE =='prononciation'){
+                        set_learningWords_prononciation(response.randomWords)
+
+                       }
+                       if(MODULE =='listening'){
+                        set_learningWords_listening(response.randomWords)
+
+                      }
+                      if(MODULE =='writing'){
+                        set_learningWords_writing(response.randomWords)
+
+                      }
+                    }
+                    else if(GAME_SETTING.gameModule == "learningMeaning"){
+                      set_learningMeaning(response.randomWords)
+                    }else if(GAME_SETTING.gameModule == "usingWords"){
+                      set_usingWords(response.randomWords)
                     }
                   },
                 // on error
@@ -45,7 +66,8 @@ function setGameLetter(letter){
                 }
             });
             //fin AJAX
-
+            $('#countdownValue').html("<div class='d-flex justify-content-center' ><i class='fas fa-cog fa-spin fa-6x'></i></div>")
+  
 //          puis je démarre le compte à rebour 
             // Set the date we're counting down to
             var countDownDate = new Date().getTime()+4000;
@@ -77,7 +99,6 @@ function setGameLetter(letter){
             }, 1000);
 
 }
-
 
 function game(sub_module){
     if(sub_module == 'typing' || sub_module == 'writing'){
@@ -111,7 +132,6 @@ function game(sub_module){
   }, 1000);
 }
 
-
 function displayTheAnswer(word_is_correct, word){
     if(!word_is_correct){
       test = 'danger';
@@ -133,7 +153,6 @@ function displayTheAnswer(word_is_correct, word){
     document.getElementById('liste').innerHTML = list_item +document.getElementById('liste').innerHTML
     document.getElementById('entryInput').value=""
 }
-
 
 function  testWord(word, givenWords){
     if(navigator.onLine){ // si l'acces à internet est établit
@@ -192,3 +211,23 @@ function  testWord(word, givenWords){
     alert("Vous n'etes pas en ligne nous ne pouvons pas contacter nos serveurs, vérifieé votre connection internet")
   }
 }
+function set_learningWords_typing(){
+
+}
+function set_learningWords_prononciation(){
+  
+}
+function set_learningWords_writing(){
+  
+}
+function set_learningWords_listening(randomWords){
+  //alert('ici on découvre des nouveaux mots ! cool non ')
+}
+
+function set_learningMeaning(randomWords){
+  //alert('nous smomes dans le module pour apprendre le sens des mots')
+}
+
+function set_usingWords(randomWords){
+  //alert('bon là on va juste faire des super phrases avec les mots !!!')
+} 

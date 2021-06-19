@@ -36,7 +36,7 @@ urlpatterns = [
     # Urls for the inscription
     path("compte/inscription",views.inscription,name="inscription"),
     path("compte/connexion",views.connexion,name="connexion"),
-    path("",views.deconnection,name="deconnection"),
+    path("#",views.deconnection,name="deconnection"),
     path("mesUtilisateur",views.BASE,name="utilisateur"),
 
     #sdfddf

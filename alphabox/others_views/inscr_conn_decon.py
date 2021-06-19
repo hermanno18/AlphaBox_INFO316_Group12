@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from alphabox.models import *
-import bcrypt
+
 
 USERNAME=None
 
@@ -67,9 +67,10 @@ def inscription(request):
 			user=Utilisateur(UserName=pseudo,Email=mail,Password=password)
 			user.save()
 			request.session.set_expiry(0)
-			request.session[pseudo]=pseudo
-			USERNAME=pseudo
-			return JsonResponse({'inscriptionMessage':'inscription avec succes','type':'success','username':pseudo})
+			request.session['login']=pseudo
+			reponse=JsonResponse({'inscriptionMessage':'inscription avec succes','type':'success','username':pseudo})
+			reponse.set_cookie('login1')
+			return response
 	else:
 		raise http404    
 
@@ -85,24 +86,35 @@ def  connexion(request):
 		if login in request.session:
 			return JsonResponse({'connexionMessage':'vous etes deja connecte','type':'danger','username':''})
 		else:
-			#request.session.set_expiry(0)		
-			request.session[login]=login
-			USERNAME=login
+			request.session.set_expiry(0)		
+			request.session['login']=login
+			response=JsonResponse({'connexionMessage':'you have login','type':'true','username':login})
+			response.set_cookie("login1",login)
 			if remember != None:
 				if login in request.COOKIES:
 					pass
 				else:
-					response=JsonResponse({'connexionMessage':'you have login','type':'true','username':login})
-					response.set_cookie("login",login)
-					return response	
-			return JsonResponse({'connexionMessage':'you have login','type':'true','username':login})
+					response.set_cookie("remember",login)
+					
+			return response
 	else:
 		raise http404 
 
 
 def deconnection(request):
-	response =render(request,'alphabox/home/index.html') 
-	response.delete_cookie("login")
+
+	MODULES = {
+    	"typing": "typing",
+    	"prononciation": "prononciation",
+    	"listening": "listening",
+    	"writing": "writing",	}
+	context = {
+        'modules':MODULES   
+    }
+	response =render(request,'alphabox/home/index.html', context) 
+	
+	for cookie in request.COOKIES:
+		response.delete_cookie(cookie)
 	liste=[]
 	for key in request.session.keys():
 		liste.append(key)

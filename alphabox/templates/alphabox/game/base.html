@@ -65,20 +65,20 @@
                       <div class="overflow-auto m-0 p-0" style="height: 400px;">
                         <li  class="dropdown-menu list-group-item list-group-item-action">
                           <div class="d-flex w-100 justify-content-between">
-                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-facebook"></i> </a> 
-                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-twitter"></i></a> 
-                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-github"></i> </a> 
-                            <a onclick=""class="btn btn-sm btn-outline-danger p-1"> <i class="fas fa-youtube"></i></a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1" data-toggle="modal" data-target="#AlertModuleNotReady"> <i class="fas fa-facebook"></i> </a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1" data-toggle="modal" data-target="#AlertModuleNotReady"> <i class="fas fa-twitter"></i></a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1" data-toggle="modal" data-target="#AlertModuleNotReady"> <i class="fas fa-github"></i> </a> 
+                            <a onclick=""class="btn btn-sm btn-outline-danger p-1" data-toggle="modal" data-target="#AlertModuleNotReady"> <i class="fas fa-youtube"></i></a> 
                           </div>
                         </li>
                       </div>
                   </div>
                 </div>
-              <a href="javascript:void(0)" class="mx-2 btn btn-danger p-1"  id="quit_party"> <i class="fa fa-1x fa-power-off"></i> Quitter</a>
+              <a href="javascript:void(0)" class="mx-2 btn btn-danger p-1"  id="quit_party" > <i class="fa fa-1x fa-power-off"></i> Quitter</a>
               <div class="dropdown-menu overflow-auto" id="confirm_quit_party">
                 <div class="list-group  m-0 p-0"  style="width: 400px; height:400px">
                     <div class="overflow-auto m-0 p-0" style="height: 400px;">
-                      <li  class="dropdown-menu list-group-item list-group-item-action">
+                      <li  class="dropdown-menu list-group-item list-group-item-action" data-toggle="modal" data-target="#AlertModuleNotReady">
                         quitter la partie en cours, entrainera la perte de vos point 
                         <div class="d-flex w-100 justify-content-between">
                           <a href="index.html" onclick=""class="btn btn-sm btn-succes p-1"> <i class=""></i> confirmer </a> 
@@ -167,9 +167,9 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="input-group btn-group mb-2 col-sm-12">
+                    <div class="input-group btn-group mb-2 col-sm-12" data-toggle="modal" data-target="#AlertModuleNotReady">
                       <label for="gameLang" class="mx-3"><span class="step">4</span> Vous voulez ajouter des joueurs?</label>
-                        <select  id="gameOthersMembers" name="gameOthersMembers" data-role="multiselect" multiple="multiple">
+                      <select  id="gameOthersMembers" name="gameOthersMembers" data-role="multiselect" multiple="multiple" disabled = 'disabled'>
                         <option value="lab">joueur 1</option>
                         <option value="proseminar">joueur 9</option>
                         <option value="proseminar">joueur 2</option>
@@ -263,7 +263,7 @@
         GAME_SETTING = {
           author: "Hermanno", // pas trop nécéssaire
           created_at:  new Date().getTime(),
-          gameModule: "guessWords", // à changet avec Django
+          gameModule: "{{module}}", // à changet avec Django
           letter : null,
           timer: null ,
           lang : null,

@@ -31,7 +31,8 @@ def game_random_words(dic):
 
 def guess_words(request, subModule):
     context = {
-        "subModule" : subModule
+        "subModule" : subModule,
+        "module" : "guesWords"
     }
     return render(request, 'alphabox/game/guessWords/index.html', context)
 
@@ -128,9 +129,14 @@ class Word():
 
 # section pour le module Learning meaning
 def learningMeaning(request):
-    context= {}
+    context= {
+        "module" : "learningMeaning"
+
+    }
     return render(request, 'alphabox/game/learnMeaning/index.html', context)
 
 def usingWords(request):
-    context= {}
+    context= {
+        "module" : "unsingWords"
+    }
     return render(request, 'alphabox/game/usingWords/index.html')

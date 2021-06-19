@@ -87,6 +87,9 @@
                             <a class="btn btn-outline-primary col-12 my-2" href="{% url 'alphabox:game_guessWords_home' modules.writing %}" >
                               ecoute et écris
                             </a>
+                            <a class="btn btn-danger col-12 my-2" href="javascript:void(0)" data-dismiss="modal" aria-label="Close" >
+                              Retour
+                            </a>
                         </div>
                       </div>
                     </div>
@@ -192,7 +195,7 @@
       </div>
       <h2 class="cover-heading mb-4 d-flex justify-content-center " style="margin-top: 20px">Encore plus de jeux !</h2>
       <div class="row p-0 m-0 d-flex justify-content-center">
-        <div class="col-md-2 animated bounceIn mainModule mx-4  "  id="subModule1">
+        <div class="col-md-2 animated bounceIn mainModule mx-4  "  id="subModule1"data-toggle="modal" data-target="#AlertModuleNotReady">
           <div class="card mb-4 shadow-sm">
             <div class="card-body ">
               <div class="d-flex justify-content-center align-items-center" style="min-height: 100px" >
@@ -201,7 +204,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-2 animated bounceIn delay-1s mainModule mx-4" id="subModule2">
+        <div class="col-md-2 animated bounceIn delay-1s mainModule mx-4" id="subModule2" data-toggle="modal" data-target="#AlertModuleNotReady">
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
@@ -210,7 +213,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-2 animated bounceIn delay-2s mainModule mx-4" id="subModule3">
+        <div class="col-md-2 animated bounceIn delay-2s mainModule mx-4" id="subModule3" data-toggle="modal" data-target="#AlertModuleNotReady">
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
@@ -219,7 +222,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-2 animated bounceIn delay-3s mainModule mx-4" id="subModule4">
+        <div class="col-md-2 animated bounceIn delay-3s mainModule mx-4" id="subModule4" data-toggle="modal" data-target="#AlertModuleNotReady">
           <div class="card mb-4 shadow-sm">
             <div class="card-body">
               <div class="d-flex justify-content-center align-items-center" style="min-height: 100px">
