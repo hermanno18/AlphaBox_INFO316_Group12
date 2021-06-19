@@ -5,6 +5,7 @@ from os import getrandom
 from django.http import JsonResponse
 from django.core import serializers #pour restructurer des données en format JSOn
 from django.http import request
+import requests
 from django.http.response import HttpResponse
 from django.shortcuts import render
 import random
@@ -19,9 +20,13 @@ def game_random_words(dic):
     i = 0
     while i < 5:
         rand = random.choice(entry_list)[0]
+
         if (rand not in random_entries):
-            random_entries.append(rand)
-            i+=1
+            result = requests.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+rand) 
+            result=str(result.content)
+            if result[2]=='[' :
+                random_entries.append(rand)
+                i+=1
     return random_entries
 
 def guess_words(request, subModule):
