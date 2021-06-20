@@ -86,17 +86,38 @@
     <div id="ManageSong" class="" onclick="testson()" >
         <i class="fas fa-2x fa-music"></i>
     </div>
-    <div class="botTriggerContainer animated headShake infinite">
-        <div id="botTrigger" class="rounded-circle w-100 h-100 ">
+    <div class="botTriggerContainer ">
+        <div id="botTrigger" class=" rounded-circle w-100 h-100 bg-primary ">
+           
+            <div  id='chatBox' class="p-2 rounded bg-primary bounceOut d-none animated "style="position:absolute; height:370px; width:250px; top:-320px; left:-85px; z-index: -1; ">
+                <div class="overflow-auto bg-light chat-container" id='chatContainer' style="height:250px">
+                    <div class="p-2 m-2  mt-2 bg-info message message-bot">
+                       Hey ! salut ! je suis <span class="text-dark">Alpha</span>, et... oui, tu l'as deviné : je suis l'assistant d'AlphaBox.
+                    </div>
+                    <div class="p-2 m-2  mt-2 bg-info message message-bot">
+                        Clique ici pour en savoir plus sur mon fonctionnement   &nbsp; :-)
+                     </div>
+
+                    <div class="p-2 m-2  mt-2 bg-info message message-bot">
+                        si t'as une préocupation, écris la moi 
+                     </div>
+                </div>
+                <div class="bg-transparent pt-2" style="height:45px">
+                    <div class=" btn-group  ">
+                        <textarea style="resize: none;" class="form-control" name="" id="to_botSender" placeholder="Je t'ecoutes..." rows="1" resize=false></textarea>
+                        <button type="submit" class="btn btn-dark btn-sm m-0 p-1" onclick="sendToBot(document.getElementById('to_botSender'))"> <i class="fas fa-paper-plane mx-2"></i></button>
+                    </div>
+                </div>
+            </div>
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-            <div id="botTriggerHeader" class="rounded-circle w-100 h-100 bg-primary">
+            <div id="botTriggerHeader" onclick="bot_talk()" class="animated  slow infinite border rounded-circle w-100 h-100 bg-primary">
                 <div class="w-100 h-50 d-flex justify-content-center">
-                    <div id="leftEye" class="rounded-circle bg-white h-75 w-25 mx-2 mt-2"></div>
-                    <div id="rightEye"  class="rounded-circle bg-white h-75 w-25 mx-2 mt-2"></div>
+                    <div id="leftEye" class="rounded-circle bg-white h-75 w-25 mx-2 mt-2 animated rubberBand slow infinite" ></div>
+                    <div id="rightEye"  class="rounded-circle bg-white h-75 w-25 mx-2 mt-2 animated rubberBand slow infinite"></div>
                 </div>
                 <div class="w-100 h-50 d-flex justify-content-center overflow-hidden ">
                     <div class="rounded-circle bg-primary h-25 w-75 mx-2 position-absolute "></div>
-                    <div class="rounded-circle bg-white h-75 w-75 mx-2 mt-1"></div>
+                    <div class="rounded-circle bg-white  h-75 w-75 mx-2  mt-1"></div>
                 </div>
             </div>
         </div>
@@ -104,7 +125,7 @@
     {% endif %}
 
             <!-- Modal qui s'achiche pour alerter qu'un module n'est pas encore pret  -->
-    <div class="modal fade text-dark rounded"   id="AlertModuleNotReady" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="SelectSuybModulesModal" aria-hidden="true">
+    <div class="modal fade text-dark rounded"  id="AlertModuleNotReady" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="SelectSuybModulesModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm modal-dialog-scrollable">
         <div class="modal-content rounded">
         <div class="modal-body bg-success-50 ">
@@ -146,6 +167,7 @@
         var SOUNDS_PATH ="{% static 'alphabox/assets/sounds/' %}"
     </script>
     <script src="{% static 'alphabox/assets/js/soundsManager.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/bot/dialog.js' %}"></script>
     <script type="text/javascript">
         /*pour afficher un Modal au chartgement
         
@@ -200,6 +222,53 @@
         }
     </script>
     
+    <script>
+        function nl2br (str, is_xhtml) {
+            if (typeof str === 'undefined' || str === null) {
+                return '';
+            }
+            var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+            return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+        }
+      
+      
+      
+        var chatContainer = document.getElementById('chatContainer');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        function sendToBot(inputElement){
+            if(inputElement.value != ''){
+                styled_msg = "<div class='p-2 m-2 mt-3 bg-dark message message-user'>" +nl2br(inputElement.value)+ "</div>"
+                chatContainer.innerHTML = chatContainer.innerHTML + styled_msg
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                setTimeout(function(){
+                    answer = bot_answer(inputElement.value)
+                    styled_msg = "<div class='p-2 m-2 mt-3 bg-info message message-bot'>" +nl2br(answer)+ "</div>"
+                    chatContainer.innerHTML = chatContainer.innerHTML + styled_msg
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    inputElement.value=""
+                },1000)
+                
+
+            }
+        }
+
+        function bot_talk(){
+            chatBox = $("#chatBox")
+            if( chatBox.attr('class').indexOf('bounceOut') != (-1) ){
+                
+                chatBox.removeClass("d-none")
+                chatBox.removeClass("bounceOut")
+                chatBox.addClass("bounceIn") 
+            }else{
+                chatBox.removeClass("bounceIn")
+                chatBox.addClass("bounceOut") 
+                
+            }
+
+               }
+    </script>
+
     {% endblock script %}
 
     </body>
