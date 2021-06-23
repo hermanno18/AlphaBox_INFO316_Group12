@@ -1,20 +1,7 @@
-          <ul class="px-3 d-flex text-white justify-content-between align-items-center m-0">
-            {% if "login1" in request.COOKIES %}
-            <h2 id="idConnexion" class="mx-5">BON-RETOUR</h2>
-            <h2 id="idEnregistrement" class="mx-2"></h2>
-
-            {% elif "remember" in request.COOKIES %}
-            <h2 id="idConnexion" class="mx-5">BON-RETOUR</h2>
-            <h2 id="idEnregistrement" class="mx-2"></h2>
-
-            {% else %}
-            <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion">Connexion</a>
-            <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement">Enregistrement</a>
-            {% endif %}
-
-
-
-          {% if "login" in request.COOKIES  and dashboard %}
+        <ul class="px-3 d-flex text-white justify-content-between align-items-center m-0">
+          <a class=" btn btn-outline-light mx-2" href="#" data-toggle="modal" data-target="#connexionModal" id="idConnexion"></a>
+          <a class="nav-link mx-2" href="#" data-toggle="modal" data-target="#registerModal" id="idEnregistrement"></a> 
+          {% if "login1" in request.COOKIES  and dashboard %}
           <div class="btn-group mr-2">
             <div class="btn-group p-0 m-0 justify-content-center">
               <button type="button" id="invitations" class="btn btn-outline-warning mx-0 " data-toggle="popover" data-trigger="focus"> <i class="fas fa-user-plus"></i> invitations</button>
@@ -70,10 +57,8 @@
                   </div>
               </div>
             </div>
-          </div>
-           <script >document.getElementById("idEnregistrement").textContent=getCookie('login')</script> 
-            {% endif %}
-
+          </div> 
+          {% endif %}
             <form action="#" class=" " >
               <select name="lang" id="siteLangSelect" class="  btn btn-outline-light dropdown-toggle"  style="height: 25px; font-size: 14px; padding:4px">
                 <option value="">Fr </option>
@@ -85,7 +70,24 @@
             </form>
             <a href="javascript:void(0)" class="mx-2 btn btn-outline-white p-1" onclick="openNav()"> <i class="fa fa-1x fa-clipboard-list"></i> Menu</a>
           </ul>
+              
               <!-- ce bloc est caché -->
              {% include 'alphabox/includes/inscriptionModal.html' %}
              {% include 'alphabox/includes/connexionModal.html' %}
              
+{% load static %}
+<script src="{% static 'alphabox/assets/js/howler/incription_connection.js' %}"></script>
+<script>
+  let val1 = getCookie('login1')
+  let val2 = getCookie('remember')
+  if (val1 != "" || val2 != "") {
+    document.getElementById("idEnregistrement").textContent = val1
+    document.getElementById("idConnexion").textContent = "BIENVENUE"
+    document.getElementById("idEnregistrement").disabled = true;
+    document.getElementById("idConnexion").disabled = true;
+  }
+  else {
+    document.getElementById("idEnregistrement").textContent = "Enregistrement"
+    document.getElementById("idConnexion").textContent = "Connexion"
+  }
+</script>

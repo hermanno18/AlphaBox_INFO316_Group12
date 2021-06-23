@@ -1,4 +1,3 @@
-
 function setGameParameters(){
 
     //          a - on insere donc ces infos dans l'objet GAME_SETTING........ o
@@ -44,7 +43,9 @@ function setGameLetter(letter){
 
                        }
                        if(MODULE =='listening'){
-                        set_learningWords_listening(response.randomWords)
+                         
+                         set_learningWords_listening(response.dict)
+                         
 
                       }
                       if(MODULE =='writing'){
@@ -218,8 +219,18 @@ function set_learningWords_prononciation(){
 function set_learningWords_writing(){
   
 }
-function set_learningWords_listening(randomWords){
+function set_learningWords_listening(dictionnaire){
+  var i=0
+  for (const [key, value] of Object.entries(dictionnaire)){
+    TABLEAU[i]=key
+    i=i+1
+  }
+  resetValues() 
+
+  //listening(tableau)
+  
   //alert('ici on découvre des nouveaux mots ! cool non ')
+
 }
 
 function set_learningMeaning(randomWords){
@@ -251,3 +262,10 @@ function set_learningMeaning(randomWords){
 function set_usingWords(randomWords){
   //alert('bon là on va juste faire des super phrases avec les mots !!!')
 } 
+
+function resetValues() {
+  document.getElementById("text1").textContent = TABLEAU.random(TABLEAU.length)
+  document.getElementById("text2").textContent = TABLEAU.random(TABLEAU.length)
+  document.getElementById("text3").textContent = TABLEAU.random(TABLEAU.length)
+  document.getElementById("text4").textContent = TABLEAU.random(TABLEAU.length)
+}

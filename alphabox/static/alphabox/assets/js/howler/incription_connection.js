@@ -1,4 +1,22 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 $("#inscription_call").on("click",event=>{
+    
     event.preventDefault();
     let csrfTokenValue = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
@@ -37,7 +55,7 @@ $("#connexion_call").on("click",event=>{
         success:function(data){
             if (data['username']!='') {
                 $("#connexionModal").modal('toggle')
-                document.getElementById("inscription_form").reset()
+                document.getElementById("connexion_form").reset()
                 document.getElementById("idEnregistrement").textContent=data['username']
                 document.getElementById("idEnregistrement").disabled = true;
                 document.getElementById("idConnexion").textContent="Bon retour"
@@ -54,33 +72,3 @@ $("#connexion_call").on("click",event=>{
     });
  })
 
-$("#deconnection").on("click",event=>{
-    event.preventDefault();
-    $.ajax({ 
-        url:urlajax3,
-        success:function(data){
-            return data
-            $("#mySidenav").collapse('hide');
-        },
-        erro:function(){
-            console.log("Erreur")
-        }
-    })
-})
-
- function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-  return "";
-}
