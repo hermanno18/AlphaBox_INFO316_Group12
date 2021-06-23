@@ -271,11 +271,12 @@
           id: null
         }
         GAME_SETTING.id = GAME_SETTING.created_at+"_"+GAME_SETTING.author+"_"+GAME_SETTING.gameModule
-
+        let TABLEAU=[]
         //définition de quelques variables JS se basant sur des variables de Django
         // IMPORTANT !!!!!!
         urlAjax_Setting = "{% url 'alphabox:game_guessWords_settings' %}";
         MODULE = '{{subModule}}';
     </script>
     <script src="{% static 'alphabox/assets/js/games/index.js' %}"></script>
+    <script src="{% static 'alphabox/assets/js/games/voice.js' %}"></script>
 {% endblock script %}
