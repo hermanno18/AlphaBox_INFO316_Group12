@@ -13,7 +13,7 @@ from ..models import setting
 
 # from nltk.corpus import wordnet as wn # pour importer WordNet
 PATH_TO_DICT = "alphabox/json/dict/dictionnary_"
-
+"""
 def game_random_words(dic):
     entry_list = list(dic.items())
     random_entries = []
@@ -28,6 +28,18 @@ def game_random_words(dic):
                 random_entries.append(rand)
                 i+=1
     return random_entries
+"""
+def game_random_words(dic):
+    entry_list = list(dic.items())
+    random_entries = []
+    i = 0
+    while i < 5:
+        rand = random.choice(entry_list)[0]
+        if (rand not in random_entries):
+            random_entries.append(rand)
+            i+=1
+    return random_entries
+
 
 def guess_words(request, subModule):
     context = {

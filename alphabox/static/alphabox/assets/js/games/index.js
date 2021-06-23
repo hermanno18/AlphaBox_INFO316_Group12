@@ -27,7 +27,6 @@ function setGameLetter(letter){
                 data: GAME_SETTING , // on récupere les données du formulaire
                 type: 'GET', // on précise la methode
                 url: urlAjax_Setting, //l'url vers laquelle AJAX doit diriger la requette
-                async: false,
                 // on success 
                 success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
                     // alors on fait des choeses ici
@@ -54,7 +53,7 @@ function setGameLetter(letter){
                       }
                     }
                     else if(GAME_SETTING.gameModule == "learningMeaning"){
-                      set_learningMeaning(response.randomWords)
+                         set_learningMeaning(response.randomWords)
                     }else if(GAME_SETTING.gameModule == "usingWords"){
                       set_usingWords(response.randomWords)
                     }
@@ -67,7 +66,7 @@ function setGameLetter(letter){
             });
             //fin AJAX
             $('#countdownValue').html("<div class='d-flex justify-content-center' ><i class='fas fa-cog fa-spin fa-6x'></i></div>")
-  
+            
 //          puis je démarre le compte à rebour 
             // Set the date we're counting down to
             var countDownDate = new Date().getTime()+4000;
@@ -162,7 +161,7 @@ function  testWord(word, givenWords){
           if(position == 0){ // si le mot qu'il a entré commence par la lettre sélectionée, on par chercher dans le dictionnaire
             
             if(givenWords.indexOf(word) ==  (-1)){ //si le mot n'est pas deja écrit
-                url_api ="https://api.dictionaryapi.dev/api/v2/entries/"+ GAME_SETTING.lang+"/"+word
+                url_api =PATH_TO_API+ GAME_SETTING.lang+"/"+word
                 $.ajax({
                   data: {} , // on défini les données à envoyer
                   type: 'GET', // on précise la methode
@@ -174,7 +173,6 @@ function  testWord(word, givenWords){
                         displayTheAnswer(true, word)
                         givenWords[givenWords.lenght] = word
                         document.getElementById('ajaxTestWordsCible').value = word
-                        
                   },
                   //au ca où on ne trouves pas
                   error: function (xhr, ajaxOptions, thrownError) {
@@ -226,6 +224,28 @@ function set_learningWords_listening(randomWords){
 
 function set_learningMeaning(randomWords){
   //alert('nous smomes dans le module pour apprendre le sens des mots')
+  correctWord = randomWords[0]
+  $('#wordToLearn').html(correctWord)
+  for(i=0; i<randomWords.length; i++ )
+  {
+    url_api =PATH_TO_API+ GAME_SETTING.lang+"/"+randomWords[i]
+    $.ajax({
+      data: randomWords[i] , // on récupere les données du formulaire
+      type: 'GET', // on précise la methode
+      url: url_api, //l'url vers laquelle AJAX doit diriger la requette
+      // on success 
+      success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
+          console.log("Server Said %o", response[0].definition)
+        },
+      // on error
+      error: function(response) { //sinon
+          //on réagi ici
+          console.log("the error returned: %o", 'incorrect')
+      }
+  });
+
+  }
+
 }
 
 function set_usingWords(randomWords){
