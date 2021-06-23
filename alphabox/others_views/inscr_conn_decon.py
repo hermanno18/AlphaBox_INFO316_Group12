@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from alphabox.models import *
 
-
 USERNAME=None
 
 def BASE(request):
