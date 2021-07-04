@@ -26,7 +26,7 @@ function setVoice() {
 function toggle(startOver = true) {
   speechSynthesis.cancel();
   if (startOver) {
-    listingOne = true
+    listingOne = true //indique que l'utulisateur a ecouter au moin une fois
     msg.text = document.querySelector("#" + valeur).textContent;
     speechSynthesis.speak(msg);
   }
