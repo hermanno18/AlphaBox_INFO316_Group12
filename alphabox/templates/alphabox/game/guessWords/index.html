@@ -21,10 +21,10 @@
                         {% endif %}
                         {% if subModule == "writing" %}
                           <form action="">
-                            <textarea name="" id="entryTextArea" cols="30" class="form-control" rows="5"></textarea>
+                            <textarea name="" cols="30" class="form-control" rows="5" id="entryInput"></textarea>
                             <div class="justify-content-between d-flex">
-                              <button type="button" class="btn btn-default" onclick="alert(' le PC prends la parloe et lit un mot')"> <i  class="fas fa-headphones" ></i> écouter </button>
-                              <button type="button" class="btn btn-primary" onclick="alert('') "> valider </button>
+                              <button type="button" class="btn btn-default" id="dictee"> <i  class="fas fa-headphones" ></i> écouter </button>
+                              <button type="button" class="btn btn-primary" id="validWord"> valider </button>
                             </div>
                           </form>
                         {% endif %}

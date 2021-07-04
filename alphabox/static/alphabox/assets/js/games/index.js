@@ -43,19 +43,19 @@ function setGameLetter(letter){
 
                        }
                        if(MODULE =='listening'){
-                         
                          set_learningWords_listening(response.dict)
                          
                       }
                       if(MODULE =='writing'){
-                        alert("on est entré")
-                        set_learningWords_writing(response.randomWords)
-
+                        set_learningWords_writing(response.dict)
+                        
                       }
+
                     }
                     else if(GAME_SETTING.gameModule == "learningMeaning"){
-                         set_learningMeaning(response.randomWords)
-                    }else if(GAME_SETTING.gameModule == "usingWords"){
+                      set_learningMeaning(response.randomWords)
+                    }
+                    else if(GAME_SETTING.gameModule == "usingWords"){
                       set_usingWords(response.randomWords)
                     }
                   },
@@ -151,7 +151,11 @@ function displayTheAnswer(word_is_correct, word){
     }
     list_item+="</li>"
     document.getElementById('liste').innerHTML = list_item +document.getElementById('liste').innerHTML
-    document.getElementById('entryInput').value=""
+
+  if (document.getElementById('entryInput') !== null) {
+      document.getElementById('entryInput').value=""
+    }
+
 }
 
 function  testWord(word, givenWords){
@@ -216,9 +220,16 @@ function set_learningWords_typing(){
 function set_learningWords_prononciation(){
   
 }
-function set_learningWords_writing(){
-  
+
+function set_learningWords_writing(dictionnaire){
+  var i = 0
+  for (const [key, value] of Object.entries(dictionnaire)) {
+    TABLEAU[i] = key
+    i = i + 1
+  }
+
 }
+
 function set_learningWords_listening(dictionnaire){
   var i=0
   for (const [key, value] of Object.entries(dictionnaire)){
