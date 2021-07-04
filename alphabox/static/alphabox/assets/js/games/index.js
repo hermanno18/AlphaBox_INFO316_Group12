@@ -46,9 +46,9 @@ function setGameLetter(letter){
                          
                          set_learningWords_listening(response.dict)
                          
-
                       }
                       if(MODULE =='writing'){
+                        alert("on est entré")
                         set_learningWords_writing(response.randomWords)
 
                       }

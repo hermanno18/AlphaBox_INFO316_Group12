@@ -21,6 +21,10 @@ urlpatterns = [
     path("dashboard/<str:userName>/others", views.dashboard_others , name="dashboard_others"),
 
     # Urls for the games
+    # To quit a party 
+    path("game/quit", views.quitParty , name="quit_party"),
+    path("game/", views.quitParty),
+
     # - Urls for the first game : "guess Words"
     path("game/guessWords/settings", views.guess_words_settings , name="game_guessWords_settings"),
     path("game/guessWords/<str:subModule>/play", views.guess_words , name="game_guessWords_home"),
@@ -48,3 +52,5 @@ urlpatterns = [
 
     #sdfsdfs
 ]
+
+handler404 = 'alphabox.views.error_404'
