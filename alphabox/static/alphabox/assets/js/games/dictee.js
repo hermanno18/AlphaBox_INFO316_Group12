@@ -21,15 +21,14 @@ function toggledictee(startOver = true) {
 
 $("#validWord").on("click", event => {
     if (!sendword){
-        var word = document.getElementById("entryInput").ariaValueText
+        var word = document.getElementById("entryInput").value
         if (word == valeurPrononcer ) {
             displayTheAnswer(true, word)    
         }
         else{
-            var reelAnswer = "correct word is ->" + valeurPrononcer;
+            var reelAnswer = "The answer was :&nbsp; <b>" + valeurPrononcer+"</b>";
             displayTheAnswer(false,word)
-            displayTheAnswer(true,reelAnswer)
-            $('#nbCorrect').html(parseInt($('#nbCorrect').html()) + -1)
+            displayTheAnswer(true, reelAnswer, true) //on lui affiche la répose correcte
         }
         sendword=true
     }

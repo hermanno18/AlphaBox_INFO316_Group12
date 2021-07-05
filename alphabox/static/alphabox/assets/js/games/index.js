@@ -53,7 +53,14 @@ function setGameLetter(letter){
 
                     }
                     else if(GAME_SETTING.gameModule == "learningMeaning"){
-                      set_learningMeaning(response.randomWords)
+                      var i = 0;keys=[]
+                      for (const [key, value] of Object.entries(response.dict)) {
+                        if(value != 0){
+                          keys[i] = key
+                        }
+                        i = i + 1
+                      }
+                      set_learningMeaning(response.randomWords,keys)
                     }
                     else if(GAME_SETTING.gameModule == "usingWords"){
                       set_usingWords(response.randomWords)
@@ -132,7 +139,7 @@ function game(sub_module){
   }, 1000);
 }
 
-function displayTheAnswer(word_is_correct, word){
+function displayTheAnswer(word_is_correct, word, tip = false){
     if(!word_is_correct){
       test = 'danger';
       icon = "times"
@@ -140,14 +147,19 @@ function displayTheAnswer(word_is_correct, word){
     }else{
       test = 'success';
       icon = 'check'
-      $('#nbCorrect').html(parseInt($('#nbCorrect').html()) + 1)
+      if(tip == false){
+        $('#nbCorrect').html(parseInt($('#nbCorrect').html()) + 1)
+      }
     }
     list_item = "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-"+test+" b d-flex justify-content-between align-items-center'>"
     list_item+= "<div class='d-flex justify-content-between align-items-center'>"
     list_item+= "<i class='fas fa-1x fa-"+icon+"-circle mr-1'></i>" +  word + "</div>"
     if(test=='success'){
         list_item+="<div class='bg-dark p-1 rounded-sm  ' >"
-        list_item+="<span class='badge badge-warning badge-pill text-white animation fadeIn infinite'>1</span> <span class='text-warning'> points </span> </div>"            
+        if(tip == false){ //si cet affichage n'est pas une réponse, on affiche les points
+          list_item+="<span class='badge badge-warning badge-pill text-white animation fadeIn infinite'>1</span> <span class='text-warning'> points </span>"            
+        }
+        list_item+="</div>"            
     }
     list_item+="</li>"
     document.getElementById('liste').innerHTML = list_item +document.getElementById('liste').innerHTML
@@ -244,20 +256,43 @@ function set_learningWords_listening(dictionnaire){
 
 }
 
-function set_learningMeaning(randomWords){
+function set_learningMeaning(randomWords, keys){
   //alert('nous smomes dans le module pour apprendre le sens des mots')
   correctWord = randomWords[0]
-  $('#wordToLearn').html(correctWord)
-  for(i=0; i<randomWords.length; i++ )
+  order = shuffleArray([1,2,3,4])
+  console.log(order)
+    $.ajax({
+      type: 'GET', // on précise la methode
+      url: PATH_TO_API+ GAME_SETTING.lang+"/good",//+randomWords[0], //l'url vers laquelle AJAX doit diriger la requette
+      // on success 
+      success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
+          $('#wordToLearn').html(correctWord)
+          choosenMeaning = response[0].meanings[randomIdInArray(response[0].meanings)]
+          $("#partOfSpeech").html(choosenMeaning.partOfSpeech)
+          choosenDefinition = choosenMeaning.definitions[randomIdInArray(choosenMeaning.definitions)]
+          $("#champProposition1").val(choosenDefinition.definition)
+          $("#proposition"+order[0]).html(choosenDefinition.definition)
+          //tu peux garder la définition dans un inputType Hidden
+      },
+      // on error
+      error: function(response) { //sinon
+          //on réagi ici
+          console.log("the error returned: %o", 'incorrect')
+      }
+    })
+  for(i=1; i<randomWords.length-1; i++ )
   {
     url_api =PATH_TO_API+ GAME_SETTING.lang+"/"+randomWords[i]
     $.ajax({
-      data: randomWords[i] , // on récupere les données du formulaire
+      //data: randomWords[i] , // on récupere les données du formulaire
       type: 'GET', // on précise la methode
       url: url_api, //l'url vers laquelle AJAX doit diriger la requette
       // on success 
       success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
-          console.log("Server Said %o", response[0].definition)
+        choosenMeaning = response[0].meanings[randomIdInArray(response)]
+        choosenDefinition = choosenMeaning.definitions[randomIdInArray(choosenMeaning.definitions)]
+        $("#champProposition"+i+1).val(choosenDefinition.definition)
+        $("#proposition"+order[i]).html(choosenDefinition.definition)
         },
       // on error
       error: function(response) { //sinon
@@ -268,6 +303,36 @@ function set_learningMeaning(randomWords){
 
   }
 
+  function learningMeaningVerifyAnwer(id){
+    choosen = $("#"+id).html()
+    if( choosen.search($("#champProposition1").val()) !=(-1) ){
+      //si le mot est correct
+      displayTheAnswer(true, correctWord )
+    }else{
+      displayTheAnswer(false, correctWord)
+      answer = "The answer was : "+$("#champProposition1").val()
+      displayTheAnswer(true, answer, true)
+    }
+    //on prends les mots au hasard dans le dictionnaire
+    words=[]
+    for (i=0; i<5; i++ ){
+      words[i] = keys[randomIdInArray(keys)] 
+    }
+    console.log("les prochains mots au hasard :%o",words)
+    set_learningMeaning(words)
+  }
+  $("#proposition1").on("click", event => {
+    learningMeaningVerifyAnwer("proposition1")
+  })
+  $("#proposition2").on("click", event => {
+    learningMeaningVerifyAnwer("proposition2")
+  })
+  $("#proposition3").on("click", event => {
+    learningMeaningVerifyAnwer("proposition3")
+  })
+  $("#proposition4").on("click", event => {
+    learningMeaningVerifyAnwer("proposition4")
+  })
 }
 
 function set_usingWords(randomWords){
@@ -279,4 +344,14 @@ function resetValues() {
   document.getElementById("text2").textContent = TABLEAU.random(TABLEAU.length)
   document.getElementById("text3").textContent = TABLEAU.random(TABLEAU.length)
   document.getElementById("text4").textContent = TABLEAU.random(TABLEAU.length)
+}
+function randomIdInArray(array){
+  return Math.floor(Math.random() * array.length)
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array
 }

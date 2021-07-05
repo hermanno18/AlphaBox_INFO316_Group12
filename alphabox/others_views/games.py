@@ -29,11 +29,12 @@ def game_random_words(dic):
     entry_list = list(dic.items())
     random_entries = []
     i = 0
-    while i < 5:
+    while i < 5 :
         rand = random.choice(entry_list)[0]
         if (rand not in random_entries):
-            random_entries.append(rand)
-            i+=1
+            if(dic[rand] != 0):
+                random_entries.append(rand)
+                i+=1
     return random_entries
 
 
