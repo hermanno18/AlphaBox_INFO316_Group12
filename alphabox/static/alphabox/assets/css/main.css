@@ -14,7 +14,26 @@ body {
    animation: Gradient 10s ease infinite;
  }
 
- 
+.chat-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.message{
+  max-width: 85%;
+  width: fit-content;
+  text-align: left;
+
+}
+
+.message-bot{
+  align-self: flex-start;
+  border-radius: 25px 25px 25px 0px;
+}
+.message-user{
+  align-self: flex-end;
+  border-radius: 25px 25px 0px 25px;
+} 
 .btn-danger{
     color: white !important;
 }
