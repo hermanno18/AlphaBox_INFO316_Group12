@@ -2,6 +2,8 @@ let valeurPrononcer="";
 var sendword = true;
 const msg2 = new SpeechSynthesisUtterance();
 msg2.lang = 'en-US';
+msg2.pitch = 0.5
+msg2.rate =0.5
 const speakButton2 = document.querySelector('#dictee');
 
 

@@ -239,8 +239,10 @@ function set_learningWords_prononciation(){
 function set_learningWords_writing(dictionnaire){
   var i = 0
   for (const [key, value] of Object.entries(dictionnaire)) {
-    TABLEAU[i] = key
-    i = i + 1
+    if (value == 0) {
+      TABLEAU[i] = key
+      i = i + 1
+    }
   }
 
 }
@@ -248,8 +250,11 @@ function set_learningWords_writing(dictionnaire){
 function set_learningWords_listening(dictionnaire){
   var i=0
   for (const [key, value] of Object.entries(dictionnaire)){
-    TABLEAU[i]=key
-    i=i+1
+    if (value == 0){
+      TABLEAU[i] = key
+      i = i + 1
+    }
+   
   }
   resetValues() 
 
