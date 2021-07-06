@@ -40,6 +40,8 @@ function setOption() {
 
   const msg = new SpeechSynthesisUtterance();
   msg.lang = 'en-US'
+  msg.pitch = 0.8
+  msg.rate = 0.8
   let voices = [];
   const speakButton = document.querySelector('#speak');
   let nombreTrouver = 0;
