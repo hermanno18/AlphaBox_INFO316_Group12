@@ -10,7 +10,7 @@ from .others_views.inscr_conn_decon import *
 PATH_TO_DICT = "alphabox/json/dict/dictionnary_"
 
 def test(request):
-    string = "bcdefghijklmnopqrstuvwxyz"
+    string = "abcdefghijklmnopqrstuvwxyz"
     for letter in string:
         print('on traite la lettre: '+letter)
         with open(PATH_TO_DICT+letter) as file:

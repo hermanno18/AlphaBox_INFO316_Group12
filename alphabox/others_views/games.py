@@ -32,7 +32,7 @@ def game_random_words(dic):
     while i < 5 :
         rand = random.choice(entry_list)[0]
         if (rand not in random_entries):
-            if dic[rand] !=0 :
+            if(dic[rand] != 0):
                 random_entries.append(rand)
                 i+=1
     return random_entries
@@ -54,7 +54,6 @@ def guess_words_settings(request):
         json.dump(PARTY_SETTINGS, jsonFile)
         jsonFile. close()
         """
-        miniDic = None
         with open(PATH_TO_DICT+PARTY_SETTINGS['letter']) as file:
             miniDic = json.load(file)
         return JsonResponse({"dict":miniDic, "randomWords": game_random_words(miniDic)}, status=200)

@@ -8,9 +8,9 @@ function setGameParameters(){
     //          b - on charge l'animation pour sélectionner une lettre
     $('#countdownModal').modal('show');
     $('#countdownValue').html($('#virtualKeyBoard').html());
-    document.getElementById('entryInput').disabled = false
+    //document.getElementById('entryInput').disabled = false
 }
-var keys=[]
+
 function setGameLetter(letter){
 //            a - on insere donc ces infos dans l'objet GAME_SETTING          
             GAME_SETTING.letter = letter
@@ -30,6 +30,7 @@ function setGameLetter(letter){
                 success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
                     // alors on fait des choeses ici
                     console.log("réponse: %o", response.randomWords) // ca c'est la commande pour dumper un objet en console
+                  var keys = []
                     for (let index = 0; index < response.randomWords.length; index++) {
                       const randWord = "<li class='m-0 p-1 list-group-item list-group-item-action list-group-item-success '>"+response.randomWords[index]+"</li>" ;
                       $("#randomWordsList").html($("#randomWordsList").html()+randWord)
@@ -238,11 +239,9 @@ function set_learningWords_prononciation(){
 
 function set_learningWords_writing(dictionnaire){
   var i = 0
-  for (const [key, value] of Object.entries(dictionnaire)) {
-    if (value == 0) {
+  for (const [key, value] of Object.entries(dictionnaire)){
       TABLEAU[i] = key
       i = i + 1
-    }
   }
 
 }
@@ -250,10 +249,9 @@ function set_learningWords_writing(dictionnaire){
 function set_learningWords_listening(dictionnaire){
   var i=0
   for (const [key, value] of Object.entries(dictionnaire)){
-    if (value == 0){
       TABLEAU[i] = key
       i = i + 1
-    }
+
    
   }
   resetValues() 
