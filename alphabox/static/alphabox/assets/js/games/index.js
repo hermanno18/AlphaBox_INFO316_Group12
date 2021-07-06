@@ -10,7 +10,7 @@ function setGameParameters(){
     $('#countdownValue').html($('#virtualKeyBoard').html());
     document.getElementById('entryInput').disabled = false
 }
-
+var keys=[]
 function setGameLetter(letter){
 //            a - on insere donc ces infos dans l'objet GAME_SETTING          
             GAME_SETTING.letter = letter
@@ -53,12 +53,15 @@ function setGameLetter(letter){
 
                     }
                     else if(GAME_SETTING.gameModule == "learningMeaning"){
-                      var i = 0;keys=[]
+                      var i = 0;
+                      if (keys.length != 0){
+                        var keys=[]
+                      }
                       for (const [key, value] of Object.entries(response.dict)) {
                         if(value != 0){
                           keys[i] = key
+                          i = i + 1
                         }
-                        i = i + 1
                       }
                       set_learningMeaning(response.randomWords,keys)
                     }
@@ -261,6 +264,7 @@ function set_learningWords_listening(dictionnaire){
 
 }
 
+let blocked = false
 function set_learningMeaning(randomWords, keys){
   //alert('nous smomes dans le module pour apprendre le sens des mots')
   correctWord = randomWords[0]
@@ -268,7 +272,7 @@ function set_learningMeaning(randomWords, keys){
   console.log(order)
     $.ajax({
       type: 'GET', // on précise la methode
-      url: PATH_TO_API+ GAME_SETTING.lang+"/good",//+randomWords[0], //l'url vers laquelle AJAX doit diriger la requette
+      url: PATH_TO_API+ GAME_SETTING.lang+"/"+correctWord, //l'url vers laquelle AJAX doit diriger la requette
       // on success 
       success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
           $('#wordToLearn').html(correctWord)
@@ -292,10 +296,12 @@ function set_learningMeaning(randomWords, keys){
       //data: randomWords[i] , // on récupere les données du formulaire
       type: 'GET', // on précise la methode
       url: url_api, //l'url vers laquelle AJAX doit diriger la requette
+      async:false,
       // on success 
       success: function(response) { // si tout se passe bien NOTE: reponse contient la réponse obtenu de la requette
-        choosenMeaning = response[0].meanings[randomIdInArray(response)]
+        choosenMeaning = response[0].meanings[randomIdInArray(response[0].meanings)]
         choosenDefinition = choosenMeaning.definitions[randomIdInArray(choosenMeaning.definitions)]
+        console.log("votredéfinition %o",choosenDefinition.definition)
         $("#champProposition"+i+1).val(choosenDefinition.definition)
         $("#proposition"+order[i]).html(choosenDefinition.definition)
         },
@@ -318,26 +324,43 @@ function set_learningMeaning(randomWords, keys){
       answer = "The answer was : "+$("#champProposition1").val()
       displayTheAnswer(true, answer, true)
     }
+    
     //on prends les mots au hasard dans le dictionnaire
     words=[]
     for (i=0; i<5; i++ ){
       words[i] = keys[randomIdInArray(keys)] 
     }
     console.log("les prochains mots au hasard :%o",words)
-    set_learningMeaning(words)
+    setTimeout(function(){
+      set_learningMeaning(words)
+      blocked = false
+    },1000)
   }
   $("#proposition1").on("click", event => {
-    learningMeaningVerifyAnwer("proposition1")
+    if (blocked == false){
+      blocked = true
+      learningMeaningVerifyAnwer("proposition1")
+    }
   })
   $("#proposition2").on("click", event => {
-    learningMeaningVerifyAnwer("proposition2")
+    if (blocked == false){
+      blocked = true
+      learningMeaningVerifyAnwer("proposition2")
+    }
   })
   $("#proposition3").on("click", event => {
-    learningMeaningVerifyAnwer("proposition3")
+    if (blocked == false){
+      blocked = true
+      learningMeaningVerifyAnwer("proposition3")
+    }
   })
   $("#proposition4").on("click", event => {
-    learningMeaningVerifyAnwer("proposition4")
+    if (blocked == false){
+      blocked = true
+      learningMeaningVerifyAnwer("proposition4")
+    }
   })
+
 }
 
 function set_usingWords(randomWords){
