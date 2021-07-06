@@ -10,7 +10,7 @@ class Seting(models.Model):
 
 
 class typePartie(models.Model):
-	
+    	
 	libelle = models.CharField(max_length = 100)
 	timer = models.DateTimeField()	 
 	noteMax = models.IntegerField()
@@ -58,7 +58,7 @@ class Joueur(models.Model):
 	"""
 
 	parties = models.ManyToManyField(Partie) #Pour definir une relation plusieurs à plusieurs
-	j_Dashboard = models.OneToOneField(JDashboard, on_delete=models.CASCADE,primary_key=True,) #Pour definir une relation un à un 
+	j_Dashboard = models.OneToOneField(JDashboard, on_delete=models.CASCADE,primary_key=True) #Pour definir une relation un à un 
 	#joueur = models.OneToOneField(Joueur, on_delete=models.CASCADE,primary_key=True,) #Pour definir une relation un à un 
 
 	username = models.CharField(max_length=30)
